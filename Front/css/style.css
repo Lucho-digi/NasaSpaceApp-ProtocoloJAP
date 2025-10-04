@@ -58,6 +58,14 @@ nav {
     position: relative;
 }
 
+/* Mobile: Group hamburger and theme toggler on the right */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
@@ -76,7 +84,6 @@ nav {
     cursor: pointer;
     padding: 0.5rem;
     z-index: 1001;
-    order: 2;
 }
 
 .hamburger span {
@@ -160,19 +167,19 @@ nav a.active, nav a:hover {
     border-bottom: 2px solid transparent;
 }
 
-/* Theme Toggler - Mobile adjustments */
+/* Theme Toggler */
 .theme-toggler {
-    order: 3;
+    flex-shrink: 0;
 }
 
-/* Tablet and Desktop - Hide hamburger, show horizontal menu */
-@media (min-width: 768px) {
+/* Small Tablet and Desktop - Hide hamburger, show horizontal menu */
+@media (min-width: 640px) {
     .hamburger {
         display: none;
     }
 
     .logo {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     nav ul.nav-menu {
@@ -183,7 +190,7 @@ nav a.active, nav a:hover {
         background: transparent;
         box-shadow: none;
         padding: 0;
-        gap: 2.5rem;
+        gap: 1.5rem;
         max-width: none;
     }
 
@@ -194,6 +201,7 @@ nav a.active, nav a:hover {
     nav a {
         padding: 0;
         padding-bottom: 0.5rem;
+        font-size: 1rem;
     }
 
     nav a::after {
@@ -205,8 +213,23 @@ nav a.active, nav a:hover {
         width: 100%;
     }
 
-    .theme-toggler {
-        order: initial;
+    .nav-actions {
+        margin-left: 0;
+    }
+}
+
+/* Desktop - Larger spacing and fonts */
+@media (min-width: 1024px) {
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    nav ul.nav-menu {
+        gap: 2.5rem;
+    }
+
+    nav a {
+        font-size: 1.1rem;
     }
 }
 
@@ -532,21 +555,39 @@ form button:hover {
 }
 
 .today-card-left h2 {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 400;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.2;
 }
 
 .today-card-left .today-temp {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 600;
     margin: 0;
     color: var(--primary-color);
+    line-height: 1;
 }
 
-.today-card-right i {
-    font-size: 6rem;
-    color: var(--primary-color);
+/* Make temperature bigger on larger screens */
+@media (min-width: 768px) {
+    .today-card-left h2 {
+        font-size: 1.6rem;
+    }
+    
+    .today-card-left .today-temp {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .today-card-left h2 {
+        font-size: 1.8rem;
+    }
+    
+    .today-card-left .today-temp {
+        font-size: 5rem;
+    }
 }
 
 .week-cards {
@@ -627,22 +668,67 @@ form button:hover {
 }
 
 .today-main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
     margin-bottom: 1.5rem;
 }
 
+.today-weather-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.today-weather-status i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
 .today-condition {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     color: var(--text-secondary-color);
     margin: 0;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Tablet and up - make weather status bigger */
+@media (min-width: 768px) {
+    .today-weather-status i {
+        font-size: 3.5rem;
+    }
+    
+    .today-condition {
+        font-size: 1rem;
+    }
+}
+
+/* Desktop and up - make it even bigger */
+@media (min-width: 1024px) {
+    .today-weather-status i {
+        font-size: 4.5rem;
+    }
+    
+    .today-condition {
+        font-size: 1.1rem;
+    }
+    
+    .today-main-info {
+        gap: 2rem;
+    }
 }
 
 .today-details {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    margin-top: auto;
+    margin-top: 0;
     border-top: 1px solid var(--border-color);
-    padding-top: 1.5rem;
+    padding-top: 1rem;
 }
 
 @media (min-width: 480px) {

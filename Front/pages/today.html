@@ -24,20 +24,22 @@
         <div class="container">
             <nav>
                 <a href="../index.html" class="logo">Raincheck</a>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="today.html" class="active">Today</a></li>
                     <li><a href="week.html">This Week</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
-                <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
-                    <div class="toggler"></div>
-                </button>
+                <div class="nav-actions">
+                    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
+                        <div class="toggler"></div>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -50,7 +52,10 @@
                     <h2>Buenos Aires, Argentina</h2>
                     <div class="today-main-info">
                         <p class="today-temp">25°C</p>
-                        <p class="today-condition">Sunny</p>
+                        <div class="today-weather-status">
+                            <i class="wi wi-day-sunny" aria-hidden="true"></i>
+                            <p class="today-condition">Sunny</p>
+                        </div>
                     </div>
                     <div class="today-details">
                         <div class="detail-item"><span>Feels like</span> <strong>26°C</strong></div>
@@ -58,9 +63,6 @@
                         <div class="detail-item"><span>Wind</span> <strong>15 km/h</strong></div>
                         <div class="detail-item"><span>Max / Min</span> <strong>28°C / 18°C</strong></div>
                     </div>
-                </div>
-                <div class="today-card-right">
-                    <i class="wi wi-day-sunny" aria-hidden="true"></i>
                 </div>
             </div>
         </section>
