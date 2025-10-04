@@ -2,7 +2,7 @@ from pydantic import BaseModel, model_validator
 from datetime import date, datetime, timedelta
 from typing import Optional, Dict
 
-MAX_YEARS_AHEAD = 2  # Límite máximo para predicciones futuras
+MAX_YEARS_AHEAD = 1  # Límite máximo para predicciones futuras
 
 # ----------------------------
 # Request Schema
