@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly Forecast - Space Weather App</title>
+    <!-- Theme loader - prevents flash of wrong theme -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <header>
         <div class="container">
             <nav>
-                <a href="index.html" class="logo">Raincheck</a>
+                <a href="../index.html" class="logo">Raincheck</a>
                 <ul>
-                    <li><a href="index.html#specific">Home</a></li>
+                    <li><a href="../index.html#specific">Home</a></li>
                     <li><a href="today.html">Today</a></li>
                     <li><a href="week.html" class="active">This Week</a></li>
                     <li><a href="about.html">About</a></li>
@@ -71,6 +80,6 @@
         </section>
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

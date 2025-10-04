@@ -6,18 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const themeToggler = document.getElementById('theme-toggler');
         if (!themeToggler) return;
 
-        const body = document.body;
+        const html = document.documentElement;
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
-            body.setAttribute('data-theme', savedTheme);
+            html.setAttribute('data-theme', savedTheme);
         }
 
         themeToggler.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'light') {
-                body.removeAttribute('data-theme');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
                 localStorage.removeItem('theme');
             } else {
-                body.setAttribute('data-theme', 'light');
+                html.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
             }
         });
