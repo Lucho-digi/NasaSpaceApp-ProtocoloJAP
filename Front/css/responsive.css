@@ -1,0 +1,12 @@
+/* Responsive Styles */
+
+/* Mobile */
+@media (max-width: 768px) {
+    :root {
+        --font-size-4xl: 2rem;
+    }
+
+    .hero h2 {
+        font-size: var(--font-size-3xl);
+    }
+}
