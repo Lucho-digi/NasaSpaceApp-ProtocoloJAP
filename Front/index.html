@@ -1,53 +1,173 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rain Check">
-    
     <title>Rain Check</title>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/variables.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <div class="logo">
-                    <h1>Rain Check</h1>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Inicio</a></li>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Raincheck</a>
+                <ul>
+                    <li><a href="#specific" class="active">Home</a></li>
+                    <li><a href="today.html">Today</a></li>
+                    <li><a href="week.html">This Week</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
-            </div>
-        </nav>
+                <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
+                    <div class="toggler"></div>
+                </button>
+            </nav>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h2>Rain Check</h2>
+    <main class="container">
+        <section id="overview">
+            <div class="overview-grid">
+                <!-- Today's Weather Preview -->
+                <a href="today.html" class="overview-card-link">
+                    <div class="card">
+                        <div class="overview-header">
+                            <h2>Today's Weather</h2>
+                            <p>Monday</p>
+                        </div>
+                        <div class="overview-content">
+                            <div class="overview-body">
+                                <i class="wi wi-day-sunny overview-icon" aria-hidden="true"></i>
+                                <p class="overview-temp">25°C</p>
+                            </div>
+                            <p class="overview-minmax">Max: 28°C / Min: 18°C</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Weekly Weather Preview -->
+                <a href="week.html" class="overview-card-link">
+                    <div class="card">
+                        <div class="overview-header">
+                            <h2>Weekly Forecast</h2>
+                        </div>
+                        <div class="week-preview">
+                            <div class="week-preview-day">
+                                <h3>Tue</h3>
+                                <i class="wi wi-day-cloudy" aria-hidden="true"></i>
+                                <p>24°C</p>
+                            </div>
+                            <div class="week-preview-day">
+                                <h3>Wed</h3>
+                                <i class="wi wi-day-rain" aria-hidden="true"></i>
+                                <p>22°C</p>
+                            </div>
+                            <div class="week-preview-day">
+                                <h3>Thu</h3>
+                                <i class="wi wi-day-showers" aria-hidden="true"></i>
+                                <p>23°C</p>
+                            </div>
+                            <div class="week-preview-day">
+                                <h3>Fri</h3>
+                                <i class="wi wi-day-sunny-overcast" aria-hidden="true"></i>
+                                <p>25°C</p>
+                            </div>
+                            <div class="week-preview-day">
+                                <h3>Sat</h3>
+                                <i class="wi wi-cloudy" aria-hidden="true"></i>
+                                <p>27°C</p>
+                            </div>
+                            <div class="week-preview-day">
+                                <h3>Sun</h3>
+                                <i class="wi wi-day-sunny" aria-hidden="true"></i>
+                                <p>28°C</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        
+        <section id="specific">
+            <h1>Weather at a Specific Time</h1>
+            <p>Select a location on the map or enter coordinates, and choose a date and time to get the forecast.</p>
+            
+            <div class="specific-container">
+                <div id="map"></div>
+                <div class="form-container">
+                    <h2>Forecast Settings</h2>
+                    <form>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="location">Location (Lat, Lng)</label>
+                                <input type="text" id="location" placeholder="-34.60, -58.38">
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time">
+                            </div>
+                            <div class="form-group">
+                                <label for="activity">Activity (Optional)</label>
+                                <select id="activity">
+                                    <option value="none">Select an activity</option>
+                                    <option value="eat-out">Eating out</option>
+                                    <option value="park">Go to the park</option>
+                                    <option value="stargazing">Stargazing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit">Get Forecast</button>
+                    </form>
                 </div>
             </div>
         </section>
+
+        <section id="forecast-result" class="hidden">
+            <h1>Forecast Result</h1>
+            <div class="card result-card">
+                <div class="result-header">
+                    <h2>Weather for <strong>Buenos Aires</strong></h2>
+                    <p>On <strong>2024-10-26</strong></p>
+                </div>
+                <div class="result-body">
+                    <div class="result-main">
+                        <i class="wi wi-rain" aria-hidden="true"></i>
+                        <div class="result-temp-container">
+                            <p class="result-temp">24°C</p>
+                            <p class="result-condition">Rain likely</p>
+                        </div>
+                    </div>
+                    <div class="result-details">
+                        <div class="detail-item"><span>Feels like (Heat Index)</span> <strong>25°C</strong></div>
+                        <div class="detail-item"><span>Humidity</span> <strong>70%</strong></div>
+                        <div class="detail-item"><span>Precipitation</span> <strong>5 mm</strong></div>
+                        <div class="detail-item"><span>Rain Probability</span> <strong>85%</strong></div>
+                    </div>
+                </div>
+                <div class="result-activity">
+                    <h3>Recommendation for: <strong>Stargazing</strong></h3>
+                    <div class="recommendation-box viable">
+                        <i class="wi wi-stars" aria-hidden="true"></i>
+                        <p><strong>It's a great night for it!</strong> The sky is expected to be clear and the wind is calm.
+                            Remember to bring a warm blanket.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Rain Check</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
 </body>
 </html>

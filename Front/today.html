@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Weather - Space Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Raincheck</a>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="today.html" class="active">Today</a></li>
+                    <li><a href="week.html">This Week</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
+                    <div class="toggler"></div>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="today">
+            <h1>Today's Weather</h1>
+            <div class="card today-card">
+                <div class="today-card-left">
+                    <h2>Buenos Aires, Argentina</h2>
+                    <div class="today-main-info">
+                        <p class="today-temp">25°C</p>
+                        <p class="today-condition">Sunny</p>
+                    </div>
+                    <div class="today-details">
+                        <div class="detail-item"><span>Feels like</span> <strong>26°C</strong></div>
+                        <div class="detail-item"><span>Humidity</span> <strong>60%</strong></div>
+                        <div class="detail-item"><span>Wind</span> <strong>15 km/h</strong></div>
+                        <div class="detail-item"><span>Max / Min</span> <strong>28°C / 18°C</strong></div>
+                    </div>
+                </div>
+                <div class="today-card-right">
+                    <i class="wi wi-day-sunny" aria-hidden="true"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
