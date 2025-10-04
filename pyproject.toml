@@ -5,8 +5,11 @@ description = "FastAPI service to forecast rain probability using short-term for
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "dotenv>=0.9.9",
     "fastapi>=0.118.0",
     "httpx>=0.28.1",
     "pydantic>=2.11.9",
+    "pydap>=3.5.8",
     "uvicorn>=0.37.0",
+    "xarray>=2025.9.1",
 ]
