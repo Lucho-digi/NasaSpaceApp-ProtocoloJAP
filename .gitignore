@@ -1,5 +1,6 @@
 # Byte-compiled / cache
 __pycache__/
+*.python-version
 *.py[cod]
 *.pyo
 *.pyd
@@ -34,3 +35,6 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+# openapi.json
+openapi.json
