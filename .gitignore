@@ -38,3 +38,6 @@ dist/
 
 # openapi.json
 openapi.json
+
+# Env vars
+.env
