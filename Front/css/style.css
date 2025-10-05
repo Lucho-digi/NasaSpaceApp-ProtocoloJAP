@@ -278,7 +278,7 @@ p {
 .overview-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 4rem;
 }
 
 /* Tablet and up */
