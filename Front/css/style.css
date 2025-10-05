@@ -1118,41 +1118,50 @@ form button:hover {
 .today-details-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
     margin-top: 2rem;
 }
 
 @media (min-width: 768px) {
     .today-details-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
 
 @media (min-width: 1024px) {
     .today-details-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
     }
 }
 
 .detail-section {
     background-color: rgba(var(--card-background-rgb, 29, 32, 38), 0.5);
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 12px;
     border: 1px solid var(--border-color);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
 }
 
 .detail-section h3 {
-    font-size: 1.1rem;
-    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    margin: 0 0 1.25rem 0;
     color: var(--primary-color);
     font-weight: 600;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .detail-section .detail-item {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
+    align-items: center;
+    padding: 0.75rem 0;
     border-bottom: 1px solid rgba(var(--border-color-rgb, 58, 63, 74), 0.3);
+    min-height: 40px;
 }
 
 .detail-section .detail-item:last-child {
@@ -1162,11 +1171,16 @@ form button:hover {
 .detail-section .detail-item span {
     color: var(--text-secondary-color);
     font-size: 0.95rem;
+    flex: 1;
 }
 
 .detail-section .detail-item strong {
     color: var(--text-color);
     font-weight: 500;
+    font-size: 1rem;
+    text-align: right;
+    flex: 0 0 auto;
+    margin-left: 1rem;
 }
 
 .day-card-link {

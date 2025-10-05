@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    // Update navigation active state
+    updateNavigationState();
+    
     const urlParams = new URLSearchParams(window.location.search);
     const dateParam = urlParams.get('date');
     const latParam = urlParams.get('lat');
@@ -138,6 +141,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!isoString) return '--:--';
         const date = new Date(isoString);
         return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function updateNavigationState() {
+        // Remove active class from all nav links
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Check if we came from week.html (has date parameter)
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasDateParam = urlParams.has('date');
+        
+        if (hasDateParam) {
+            // If has date param, we came from week, so mark week as active
+            const weekLink = document.querySelector('.nav-menu a[href="week.html"]');
+            if (weekLink) weekLink.classList.add('active');
+        } else {
+            // Otherwise, mark today as active
+            const todayLink = document.querySelector('.nav-menu a[href="today.html"]');
+            if (todayLink) todayLink.classList.add('active');
+        }
     }
 
     await loadDayWeather();
