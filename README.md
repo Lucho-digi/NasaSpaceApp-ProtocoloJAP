@@ -185,6 +185,7 @@ NASA's Goddard Earth Sciences Data and Information Services Center provides:
 - Python 3.12 or higher
 - [uv](https://docs.astral.sh/uv/) package manager
 - PostgreSQL database
+- NASA API Keys
 
 ### Backend Setup
 ```bash
@@ -204,7 +205,6 @@ python -m http.server 8000
 Create a `.env` file in the backend directory:
 ```
 DATABASE_URL=postgresql://user:password@localhost/raincheck
-NASA_POWER_API_KEY=your_api_key_here
 ```
 
 ## 👥 Team - Protocolo JAP
