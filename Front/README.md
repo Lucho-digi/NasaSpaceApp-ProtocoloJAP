@@ -107,3 +107,82 @@ Edita el contenido en `index.html`
 ## 📄 Licencia
 
 MIT
+
+---
+
+## 🔌 Dynamic API Integration
+
+The frontend is now fully dynamic and consumes weather data from the backend API.
+
+### API Configuration
+
+Edit `js/config.js` to change the API base URL:
+
+```javascript
+const API_CONFIG = {
+    BASE_URL: 'http://localhost:8000/api',
+    ENDPOINTS: {
+        WEATHER: '/weather',
+        WEEKLY_FORECAST: '/forecast/weekly'
+    }
+};
+```
+
+### Expected API Endpoints
+
+#### 1. Current Weather Data
+**GET** `/api/weather`
+
+Query Parameters:
+- `latitude` (required): Latitude coordinate
+- `longitude` (required): Longitude coordinate
+- `date` (optional): Date in YYYY-MM-DD format
+- `start_time` (optional): Start time in ISO 8601 format
+- `end_time` (optional): End time in ISO 8601 format
+
+#### 2. Weekly Forecast
+**GET** `/api/forecast/weekly`
+
+Query Parameters:
+- `latitude` (required): Latitude coordinate
+- `longitude` (required): Longitude coordinate
+
+Response: Array of 6-7 weather objects with same structure as current weather endpoint.
+
+### Key Dynamic Features
+
+1. **Auto Location Storage** - User's selected location persists via localStorage
+2. **Interactive Map** - Click to select location with reverse geocoding
+3. **Smart Weather Icons** - Automatically selected based on conditions
+4. **Activity Recommendations** - Dynamic suggestions based on weather data
+5. **Real-time Updates** - All data fetched from API on page load
+
+### Updated File Structure
+
+```
+Front/
+├── js/
+│   ├── config.js          # API configuration (NEW)
+│   ├── utils.js           # API calls and utilities (UPDATED)
+│   ├── main.js            # Main app logic (UPDATED)
+│   ├── today.js           # Today page logic (NEW)
+│   ├── week.js            # Week page logic (NEW)
+│   └── map.js             # Map integration (UPDATED)
+```
+
+### How It Works
+
+1. Page loads → Fetch location from localStorage
+2. Call API with coordinates
+3. Parse JSON response
+4. Update UI dynamically
+5. User clicks map → Update location → Refresh data
+
+### Weather Icon Logic
+
+Icons are selected based on:
+- Rain probability: >70% = rain, >40% = showers
+- Cloud coverage: >80% = cloudy, >50% = partly cloudy
+- Time of day: day/night variants
+
+See `WeatherUtils.getWeatherIcon()` in `utils.js` for full logic.

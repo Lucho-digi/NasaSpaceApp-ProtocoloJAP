@@ -1,0 +1,206 @@
+[
+  {
+    "location": {
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "place_name": "Montevideo, Uruguay",
+      "grid_resolution_deg": 0.5
+    },
+    "date": "2025-10-06",
+    "forecast_summary": "Día soleado con pocas nubes.",
+    "atmospheric_conditions": {
+      "precipitation": {
+        "probability": 0.15,
+        "type": "none",
+        "intensity_mm_hr": 0.0
+      },
+      "temperature": {
+        "surface_celsius": 22.5,
+        "dew_point_celsius": 15.2,
+        "min_celsius": 17.0,
+        "max_celsius": 26.0
+      },
+      "humidity": {
+        "relative_percent": 65
+      },
+      "wind": {
+        "speed_m_s": 4.2,
+        "direction_deg": 120
+      },
+      "clouds": {
+        "coverage_percent": 25,
+        "type": "cumulus"
+      }
+    }
+  },
+  {
+    "location": {
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "place_name": "Montevideo, Uruguay",
+      "grid_resolution_deg": 0.5
+    },
+    "date": "2025-10-07",
+    "forecast_summary": "Parcialmente nublado, vientos moderados.",
+    "atmospheric_conditions": {
+      "precipitation": {
+        "probability": 0.25,
+        "type": "none",
+        "intensity_mm_hr": 0.0
+      },
+      "temperature": {
+        "surface_celsius": 21.0,
+        "dew_point_celsius": 16.5,
+        "min_celsius": 16.5,
+        "max_celsius": 24.0
+      },
+      "humidity": {
+        "relative_percent": 70
+      },
+      "wind": {
+        "speed_m_s": 5.8,
+        "direction_deg": 135
+      },
+      "clouds": {
+        "coverage_percent": 55,
+        "type": "stratocumulus"
+      }
+    }
+  },
+  {
+    "location": {
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "place_name": "Montevideo, Uruguay",
+      "grid_resolution_deg": 0.5
+    },
+    "date": "2025-10-08",
+    "forecast_summary": "Lluvias probables durante la tarde.",
+    "atmospheric_conditions": {
+      "precipitation": {
+        "probability": 0.75,
+        "type": "rain",
+        "intensity_mm_hr": 2.1
+      },
+      "temperature": {
+        "surface_celsius": 19.8,
+        "dew_point_celsius": 17.8,
+        "min_celsius": 16.0,
+        "max_celsius": 22.0
+      },
+      "humidity": {
+        "relative_percent": 85
+      },
+      "wind": {
+        "speed_m_s": 7.2,
+        "direction_deg": 145
+      },
+      "clouds": {
+        "coverage_percent": 90,
+        "type": "nimbostratus"
+      }
+    }
+  },
+  {
+    "location": {
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "place_name": "Montevideo, Uruguay",
+      "grid_resolution_deg": 0.5
+    },
+    "date": "2025-10-09",
+    "forecast_summary": "Chubascos intermitentes, mejorando hacia la noche.",
+    "atmospheric_conditions": {
+      "precipitation": {
+        "probability": 0.55,
+        "type": "showers",
+        "intensity_mm_hr": 1.0
+      },
+      "temperature": {
+        "surface_celsius": 20.5,
+        "dew_point_celsius": 16.0,
+        "min_celsius": 17.0,
+        "max_celsius": 23.0
+      },
+      "humidity": {
+        "relative_percent": 75
+      },
+      "wind": {
+        "speed_m_s": 6.0,
+        "direction_deg": 140
+      },
+      "clouds": {
+        "coverage_percent": 70,
+        "type": "cumulonimbus"
+      }
+    }
+  },
+  {
+    "location": {
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "place_name": "Montevideo, Uruguay",
+      "grid_resolution_deg": 0.5
+    },
+    "date": "2025-10-10",
+    "forecast_summary": "Mayormente soleado con vientos suaves.",
+    "atmospheric_conditions": {
+      "precipitation": {
+        "probability": 0.18,
+        "type": "none",
+        "intensity_mm_hr": 0.0
+      },
+      "temperature": {
+        "surface_celsius": 23.0,
+        "dew_point_celsius": 14.5,
+        "min_celsius": 18.0,
+        "max_celsius": 25.0
+      },
+      "humidity": {
+        "relative_percent": 60
+      },
+      "wind": {
+        "speed_m_s": 3.5,
+        "direction_deg": 110
+      },
+      "clouds": {
+        "coverage_percent": 30,
+        "type": "cumulus"
+      }
+    }
+  },
+  {
+    "location": {
+      "latitude": -34.9011,
+      "longitude": -56.1645,
+      "place_name": "Montevideo, Uruguay",
+      "grid_resolution_deg": 0.5
+    },
+    "date": "2025-10-11",
+    "forecast_summary": "Nublado con posibilidad de lluvia ligera.",
+    "atmospheric_conditions": {
+      "precipitation": {
+        "probability": 0.35,
+        "type": "light rain",
+        "intensity_mm_hr": 0.3
+      },
+      "temperature": {
+        "surface_celsius": 22.0,
+        "dew_point_celsius": 17.0,
+        "min_celsius": 19.0,
+        "max_celsius": 27.0
+      },
+      "humidity": {
+        "relative_percent": 72
+      },
+      "wind": {
+        "speed_m_s": 4.8,
+        "direction_deg": 125
+      },
+      "clouds": {
+        "coverage_percent": 75,
+        "type": "stratus"
+      }
+    }
+  }
+]
