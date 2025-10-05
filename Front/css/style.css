@@ -894,6 +894,8 @@ form button:hover {
     margin: 0;
     font-weight: 500;
     white-space: nowrap;
+    margin-top: 1em;
+    text-align: center;
 }
 
 /* Tablet and up - make weather status bigger */
