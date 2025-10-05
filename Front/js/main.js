@@ -159,15 +159,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     function setupForecastForm() {
         const forecastForm = document.querySelector('#specific form');
         const forecastResultSection = document.getElementById('forecast-result');
+        const dateInput = document.getElementById('date');
+        
         if (!forecastForm || !forecastResultSection) return;
+
+        if (dateInput) {
+            const today = new Date();
+            const oneYearFromNow = new Date();
+            oneYearFromNow.setFullYear(today.getFullYear() + 1);
+            
+            dateInput.value = today.toISOString().split('T')[0];
+            dateInput.min = today.toISOString().split('T')[0];
+            dateInput.max = oneYearFromNow.toISOString().split('T')[0];
+        }
 
         forecastForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const locationInput = document.getElementById('location').value;
-            const dateInput = document.getElementById('date').value;
-            const timeInput = document.getElementById('time').value;
+            const dateValue = document.getElementById('date').value;
+            const hourValue = document.getElementById('hour').value;
+            const minuteValue = document.getElementById('minute').value;
+            const ampmValue = document.getElementById('ampm').value;
             const activityInput = document.getElementById('activity').value;
+
+            let hour24 = parseInt(hourValue);
+            if (ampmValue === 'PM' && hour24 !== 12) {
+                hour24 += 12;
+            } else if (ampmValue === 'AM' && hour24 === 12) {
+                hour24 = 0;
+            }
+            
+            const timeInput = `${String(hour24).padStart(2, '0')}:${minuteValue}`;
 
             let latitude, longitude;
             if (locationInput && locationInput.includes(',')) {
@@ -180,13 +203,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 longitude = location.longitude;
             }
 
-            const startTime = timeInput ? `${dateInput}T${timeInput}:00Z` : null;
+            const startTime = timeInput ? `${dateValue}T${timeInput}:00Z` : null;
             const endTime = startTime ? new Date(new Date(startTime).getTime() + 4 * 60 * 60 * 1000).toISOString() : null;
 
             const data = await WeatherAPI.fetchWeatherData(
                 latitude,
                 longitude,
-                dateInput || null,
+                dateValue || null,
                 startTime,
                 endTime
             );

@@ -484,6 +484,28 @@ p {
     font-weight: 500;
 }
 
+.time-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-selects {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-select {
+    flex: 1;
+    min-width: 60px;
+}
+
+.time-separator {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary-color);
+}
+
 form input,
 form select,
 form button {
