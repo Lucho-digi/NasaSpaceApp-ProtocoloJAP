@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <h3>${dayName}</h3>
                         <span class="accordion-date">${dateFormatted}</span>
                     </div>
+                    <i class="wi ${icon} accordion-icon-mobile" aria-hidden="true"></i>
                     <div class="accordion-day-preview">
                         <i class="wi ${icon}" aria-hidden="true"></i>
                         <span class="accordion-condition">${condition}</span>
