@@ -1124,7 +1124,7 @@ form button:hover {
 .today-details-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
     width: 100%;
 }
@@ -1132,14 +1132,14 @@ form button:hover {
 @media (min-width: 768px) {
     .today-details-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
     }
 }
 
 @media (min-width: 1024px) {
     .today-details-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
         justify-items: stretch;
     }
     
