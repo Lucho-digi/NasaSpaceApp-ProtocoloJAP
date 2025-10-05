@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Today's Weather - Space Weather App</title>
     <!-- Theme loader - prevents flash of wrong theme -->
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 document.documentElement.setAttribute('data-theme', savedTheme);
@@ -19,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -51,7 +53,7 @@
                 <div class="today-card-left">
                     <h2 id="location-name">Loading...</h2>
                     <p id="date-display" class="date-subtitle"></p>
-                    
+
                     <div class="today-main-info">
                         <p class="today-temp">--°C</p>
                         <div class="today-weather-status">
@@ -59,47 +61,47 @@
                             <p class="today-condition">--</p>
                         </div>
                     </div>
-                    
+
                     <p id="forecast-summary" class="forecast-summary">--</p>
-                    
-                    <div class="today-details-grid">
-                        <div class="detail-section">
-                            <h3>Temperature</h3>
-                            <div class="detail-item"><span>Current</span> <strong id="temp-current">--°C</strong></div>
-                            <div class="detail-item"><span>Feels like</span> <strong id="temp-feels">--°C</strong></div>
-                            <div class="detail-item"><span>Max / Min</span> <strong id="temp-range">--°C / --°C</strong></div>
+
+                    <div class="today-details-text">
+                        <div class="details-column">
+                            <h3>🌡️ Temperature</h3>
+                            <p><span>Current:</span> <strong id="temp-current">--°C</strong></p>
+                            <p><span>Feels like:</span> <strong id="temp-feels">--°C</strong></p>
+                            <p><span>Max / Min:</span> <strong id="temp-range">--°C / --°C</strong></p>
                         </div>
-                        
-                        <div class="detail-section">
-                            <h3>Precipitation</h3>
-                            <div class="detail-item"><span>Probability</span> <strong id="precip-prob">--%</strong></div>
-                            <div class="detail-item"><span>Intensity</span> <strong id="precip-intensity">-- mm/h</strong></div>
-                            <div class="detail-item"><span>Type</span> <strong id="precip-type">--</strong></div>
+
+                        <div class="details-column">
+                            <h3>💧 Precipitation</h3>
+                            <p><span>Probability:</span> <strong id="precip-prob">--%</strong></p>
+                            <p><span>Intensity:</span> <strong id="precip-intensity">-- mm/h</strong></p>
+                            <p><span>Type:</span> <strong id="precip-type">--</strong></p>
                         </div>
-                        
-                        <div class="detail-section">
-                            <h3>Wind & Air</h3>
-                            <div class="detail-item"><span>Wind Speed</span> <strong id="wind-speed">-- km/h</strong></div>
-                            <div class="detail-item"><span>Wind Gusts</span> <strong id="wind-gusts">-- km/h</strong></div>
-                            <div class="detail-item"><span>Direction</span> <strong id="wind-direction">--</strong></div>
-                            <div class="detail-item"><span>Humidity</span> <strong id="humidity">--%</strong></div>
-                            <div class="detail-item"><span>Pressure</span> <strong id="pressure">-- hPa</strong></div>
+
+                        <div class="details-column">
+                            <h3>💨 Wind & Air</h3>
+                            <p><span>Wind Speed:</span> <strong id="wind-speed">-- km/h</strong></p>
+                            <p><span>Wind Gusts:</span> <strong id="wind-gusts">-- km/h</strong></p>
+                            <p><span>Direction:</span> <strong id="wind-direction">--</strong></p>
+                            <p><span>Humidity:</span> <strong id="humidity">--%</strong></p>
+                            <p><span>Pressure:</span> <strong id="pressure">-- hPa</strong></p>
                         </div>
-                        
-                        <div class="detail-section">
-                            <h3>Clouds & Sun</h3>
-                            <div class="detail-item"><span>Cloud Coverage</span> <strong id="cloud-coverage">--%</strong></div>
-                            <div class="detail-item"><span>Cloud Type</span> <strong id="cloud-type">--</strong></div>
-                            <div class="detail-item"><span>Solar Radiation</span> <strong id="solar-irradiance">-- W/m²</strong></div>
-                            <div class="detail-item"><span>Sunrise</span> <strong id="sunrise">--:--</strong></div>
-                            <div class="detail-item"><span>Sunset</span> <strong id="sunset">--:--</strong></div>
+
+                        <div class="details-column">
+                            <h3>☁️ Clouds & Sun</h3>
+                            <p><span>Cloud Coverage:</span> <strong id="cloud-coverage">--%</strong></p>
+                            <p><span>Cloud Type:</span> <strong id="cloud-type">--</strong></p>
+                            <p><span>Solar Radiation:</span> <strong id="solar-irradiance">-- W/m²</strong></p>
+                            <p><span>Sunrise:</span> <strong id="sunrise">--:--</strong></p>
+                            <p><span>Sunset:</span> <strong id="sunset">--:--</strong></p>
                         </div>
-                        
-                        <div class="detail-section">
-                            <h3>Additional Info</h3>
-                            <div class="detail-item"><span>Lightning Risk</span> <strong id="lightning-risk">--</strong></div>
-                            <div class="detail-item"><span>Air Quality (AOD)</span> <strong id="air-quality">--</strong></div>
-                            <div class="detail-item"><span>Confidence</span> <strong id="confidence">--%</strong></div>
+
+                        <div class="details-column">
+                            <h3>ℹ️ Additional Info</h3>
+                            <p><span>Lightning Risk:</span> <strong id="lightning-risk">--</strong></p>
+                            <p><span>Air Quality (AOD):</span> <strong id="air-quality">--</strong></p>
+                            <p><span>Confidence:</span> <strong id="confidence">--%</strong></p>
                         </div>
                     </div>
                 </div>
@@ -107,9 +109,19 @@
         </section>
     </main>
 
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Raincheck. A project for the
+                <a href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener noreferrer">Nasa Space Apps
+                    Challenge</a>.
+            </p>
+        </div>
+    </footer>
+
     <script src="../js/config.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/today.js"></script>
 </body>
+
 </html>

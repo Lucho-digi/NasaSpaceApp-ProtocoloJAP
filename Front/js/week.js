@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function updateWeekPage(weekData, location) {
-        const subtitle = document.querySelector('.week-subtitle');
+        const subtitle = document.getElementById('week-location');
         if (subtitle) {
             subtitle.textContent = location.place_name;
         }
 
-        const weekCards = document.querySelector('.week-cards');
+        const weekCards = document.getElementById('week-cards');
         if (!weekCards) return;
 
         weekCards.innerHTML = '';

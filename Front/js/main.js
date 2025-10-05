@@ -99,8 +99,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function updateTodayOverview(data) {
-        const overviewCard = document.querySelector('.overview-card-link:first-child .card');
-        if (!overviewCard) return;
+        const todayDay = document.getElementById('today-day');
+        const todayIcon = document.getElementById('today-icon');
+        const todayTemp = document.getElementById('today-temp');
+        const todayMinmax = document.getElementById('today-minmax');
+        
+        if (!todayDay || !todayIcon || !todayTemp || !todayMinmax) return;
 
         const temp = data.atmospheric_conditions.temperature;
         const precip = data.atmospheric_conditions.precipitation;
@@ -114,23 +118,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             'day'
         );
 
-        overviewCard.querySelector('.overview-header p').textContent = dayName;
-        overviewCard.querySelector('.overview-icon').className = `wi ${icon} overview-icon`;
-        overviewCard.querySelector('.overview-temp').textContent = 
-            `${WeatherUtils.formatTemperature(temp.surface_celsius)}°C`;
-        overviewCard.querySelector('.overview-minmax').textContent = 
-            `Max: ${WeatherUtils.formatTemperature(temp.max_celsius)}°C / Min: ${WeatherUtils.formatTemperature(temp.min_celsius)}°C`;
+        todayDay.textContent = dayName;
+        todayIcon.className = `wi ${icon} overview-icon`;
+        todayTemp.textContent = `${WeatherUtils.formatTemperature(temp.surface_celsius)}°C`;
+        todayMinmax.textContent = `Max: ${WeatherUtils.formatTemperature(temp.max_celsius)}°C / Min: ${WeatherUtils.formatTemperature(temp.min_celsius)}°C`;
     }
 
     function updateWeekOverview(weekData) {
-        const weekPreview = document.querySelector('.week-preview');
+        const weekPreview = document.getElementById('week-preview');
         if (!weekPreview) return;
 
-        const days = weekPreview.querySelectorAll('.week-preview-day');
+        weekPreview.innerHTML = '';
         
-        weekData.slice(0, 6).forEach((dayData, index) => {
-            if (!days[index]) return;
-
+        weekData.slice(0, 6).forEach((dayData) => {
             const temp = dayData.atmospheric_conditions.temperature;
             const precip = dayData.atmospheric_conditions.precipitation;
             const clouds = dayData.atmospheric_conditions.clouds;
@@ -144,10 +144,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 'day'
             );
 
-            days[index].querySelector('h3').textContent = dayName;
-            days[index].querySelector('i').className = `wi ${icon}`;
-            days[index].querySelector('p').textContent = 
-                `${WeatherUtils.formatTemperature(temp.surface_celsius)}°C`;
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'week-preview-day';
+            dayDiv.innerHTML = `
+                <h3>${dayName}</h3>
+                <i class="wi ${icon}" aria-hidden="true"></i>
+                <p>${WeatherUtils.formatTemperature(temp.surface_celsius)}°C</p>
+            `;
+            
+            weekPreview.appendChild(dayDiv);
         });
     }
 
