@@ -1084,11 +1084,43 @@ form button:hover {
     margin-bottom: 0.25rem;
 }
 
+.about-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60rem;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#about h1 {
+    background-color: var(--background-color);
+    width: 22rem;
+    border-radius: 10px;
+}
+
+.about-bg svg {
+    position: absolute;
+    width: 160%;
+    height: 150%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-bg svg ellipse {
+    stroke: var(--primary-color);
+    stroke-width: 0.8;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
 .about-card {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1.5rem;
+    gap: 3rem;
+    padding: 2.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1468,6 +1500,7 @@ form button:hover {
     cursor: pointer;
     transition: background-color 0.3s ease;
     gap: 0.5rem;
+    overflow: hidden;
 }
 
 @media (min-width: 640px) {
