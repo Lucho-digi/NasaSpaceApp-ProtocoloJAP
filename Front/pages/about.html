@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Raincheck - Space Weather App</title>
+    <!-- Theme loader - prevents flash of wrong theme -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="../index.html" class="logo">Raincheck</a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="today.html">Today</a></li>
+                    <li><a href="week.html">This Week</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
+                        <div class="toggler"></div>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="about-bg">
+            <svg width="2360" height="2360" viewBox="0 0 2360 2360" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.75">
+                    <ellipse cx="-188.29" cy="523.845" rx="3394.13" ry="1298"
+                        transform="rotate(22.3651 -188.29 523.845)" />
+                    <ellipse cx="-188.29" cy="523.846" rx="2552.82" ry="976.261"
+                        transform="rotate(22.3651 -188.29 523.846)" />
+                    <ellipse cx="-188.289" cy="523.845" rx="1997.2" ry="763.777"
+                        transform="rotate(22.3651 -188.289 523.845)" />
+                    <ellipse cx="-188.29" cy="523.846" rx="1378.22" ry="527.065"
+                        transform="rotate(22.3651 -188.29 523.846)" />
+                    <ellipse cx="-188.289" cy="523.845" rx="752.879" ry="287.919"
+                        transform="rotate(22.3651 -188.289 523.845)" />
+                    <ellipse cx="-188.29" cy="523.845" rx="429.185" ry="164.131"
+                        transform="rotate(22.3651 -188.29 523.845)" />
+                </g>
+            </svg>
+        </div>
+        <section id="about">
+            <h1>About Raincheck</h1>
+            <div class="card about-card">
+                <!-- Introduction -->
+                <div class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>Born from the <strong>Nasa Space Apps Challenge</strong>, Raincheck is more than just a weather app. It's our answer to the challenge of making complex climate data accessible and useful for everyone. Our mission is to provide a tool that is not only precise and reliable but also intuitive and a pleasure to use, helping people connect with the environment around them.</p>
+                </div>
+
+                <!-- Our Philosophy -->
+                <div class="about-section">
+                    <h2>The "Vanilla" Philosophy</h2>
+                    <p>In a world of heavy frameworks, we chose a different path. Raincheck is built with <strong>100% Vanilla JavaScript, HTML, and CSS</strong>. This deliberate choice ensures maximum performance, zero dependencies, and a lightning-fast experience on any device, anywhere in the world. It's a testament to the power of core web technologies.</p>
+                </div>
+
+                <!-- Dynamic Engine -->
+                <div class="about-section">
+                    <h2>Dynamic Weather Engine</h2>
+                    <p>Raincheck is powered by a dynamic backend that provides real-time weather data. Here’s how it works:</p>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="wi wi-cloud-refresh"></i>
+                            <span>API Integration</span>
+                            <small>Consumes data from a dedicated backend for current and weekly forecasts.</small>
+                        </div>
+                        <div class="feature-item">
+                            <i class="wi wi-map"></i>
+                            <span>Interactive Map</span>
+                            <small>Select any location on the globe with a simple click, powered by Leaflet.js.</small>
+                        </div>
+                        <div class="feature-item">
+                            <i class="wi wi-thermometer"></i>
+                            <span>Smart Icons</span>
+                            <small>Weather icons change dynamically based on conditions like rain, clouds, and time of day.</small>
+                        </div>
+                        <div class="feature-item">
+                            <i class="wi wi-stars"></i>
+                            <span>Activity Suggestions</span>
+                            <small>Get personalized recommendations for activities like stargazing based on the forecast.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Stack -->
+                <div class="about-section">
+                    <h2>Technology Stack</h2>
+                    <p>Built with a focus on simplicity and robustness, using modern and universally supported technologies.</p>
+                    <div class="tech-stack">
+                        <span>HTML5</span>
+                        <span>CSS3 (with Variables)</span>
+                        <span>JavaScript (ES6+)</span>
+                        <span>Leaflet.js</span>
+                        <span>Responsive Design</span>
+                        <span>Light/Dark Theme</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Raincheck. A project for the 
+                <a href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener noreferrer" id="footer-link">Nasa Space Apps Challenge</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../js/common.js"></script>
+</body>
+
+</html>

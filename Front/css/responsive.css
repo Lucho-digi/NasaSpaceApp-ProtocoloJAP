@@ -1,0 +1,48 @@
+/* Mobile-First Responsive Styles */
+
+/* Base styles are mobile (already in style.css) */
+
+/* Tablet and up (768px+) */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 3rem;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr 1.5fr;
+    }
+
+    .weekly-forecast {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h2 {
+        font-size: var(--font-size-4xl);
+    }
+}
+
+/* Desktop and up (1024px+) */
+@media (min-width: 1024px) {
+    :root {
+        --font-size-4xl: 2.5rem;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr 1.5fr;
+    }
+
+    .weekly-forecast {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Large desktop (1440px+) */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .weekly-forecast {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

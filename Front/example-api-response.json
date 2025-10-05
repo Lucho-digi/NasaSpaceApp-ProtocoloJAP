@@ -1,0 +1,99 @@
+{
+  "location": {
+    "latitude": -34.9011,
+    "longitude": -56.1645,
+    "place_name": "Montevideo, Uruguay",
+    "grid_resolution_deg": 0.5
+  },
+  "date": "2025-10-05",
+  "time_window": {
+    "start": "2025-10-05T14:00:00Z",
+    "end": "2025-10-05T18:00:00Z"
+  },
+  "data_sources": {
+    "power_api": {
+      "description": "NASA POWER Project — solar and meteorological parameters",
+      "variables": [
+        "temperature_2m",
+        "surface_pressure",
+        "relative_humidity",
+        "solar_radiation",
+        "wind_speed_10m"
+      ],
+      "update_frequency": "hourly"
+    },
+    "ges_disc_opendap": {
+      "description": "Satellite-based precipitation and atmospheric datasets",
+      "variables": [
+        "precipitation_rate",
+        "cloud_top_temperature",
+        "lightning_density",
+        "water_vapor_content"
+      ],
+      "update_frequency": "3-hourly"
+    }
+  },
+  "forecast_summary": "Alta probabilidad de lluvia ligera y nubosidad densa, con radiación solar reducida.",
+  "atmospheric_conditions": {
+    "precipitation": {
+      "probability": 0.78,
+      "type": "rain",
+      "intensity_mm_hr": 1.4,
+      "cloud_top_temp_k": 253.2
+    },
+    "temperature": {
+      "surface_celsius": 20.3,
+      "dew_point_celsius": 17.1,
+      "min_celsius": 18.0,
+      "max_celsius": 23.7
+    },
+    "humidity": {
+      "relative_percent": 82,
+      "specific_humidity_kg_kg": 0.012
+    },
+    "wind": {
+      "speed_m_s": 6.4,
+      "direction_deg": 140,
+      "gusts_m_s": 9.2
+    },
+    "solar": {
+      "irradiance_w_m2": 310,
+      "clearsky_index": 0.42,
+      "sunrise": "2025-10-05T09:28:00Z",
+      "sunset": "2025-10-05T22:51:00Z"
+    },
+    "clouds": {
+      "coverage_percent": 88,
+      "optical_depth": 17.4,
+      "type": "nimbostratus"
+    },
+    "pressure": {
+      "surface_hpa": 1011.8,
+      "trend": "falling"
+    },
+    "lightning": {
+      "activity_index": 0.18,
+      "risk_level": "low"
+    },
+    "air_quality": {
+      "aerosol_optical_depth": 0.15,
+      "ozone_du": 290.4
+    }
+  },
+  "model_output": {
+    "rain_forecast_index": 0.83,
+    "confidence_score": 0.91,
+    "model_version": "nasa-weather-blend-v1"
+  },
+  "metadata": {
+    "queried_at": "2025-10-04T21:15:00Z",
+    "api_version": "1.1.0",
+    "units": {
+      "temperature": "°C",
+      "pressure": "hPa",
+      "irradiance": "W/m²",
+      "precipitation": "mm/h",
+      "wind": "m/s"
+    }
+  }
+}
