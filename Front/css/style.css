@@ -31,12 +31,25 @@ body {
     margin: 0;
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
 }
 
 header {
@@ -1352,10 +1365,17 @@ form button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    gap: 1rem;
+    gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .accordion-header {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
 }
 
 .accordion-header:hover {
@@ -1365,23 +1385,41 @@ form button:hover {
 .accordion-day-info {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     flex: 1;
     flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+    .accordion-day-info {
+        gap: 2rem;
+    }
 }
 
 .accordion-day-main {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    min-width: 120px;
+    min-width: 100px;
+}
+
+@media (min-width: 640px) {
+    .accordion-day-main {
+        min-width: 120px;
+    }
 }
 
 .accordion-day-main h3 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-color);
+}
+
+@media (min-width: 640px) {
+    .accordion-day-main h3 {
+        font-size: 1.3rem;
+    }
 }
 
 .accordion-date {
@@ -1392,19 +1430,38 @@ form button:hover {
 .accordion-day-preview {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.75rem;
     flex: 1;
 }
 
+@media (min-width: 640px) {
+    .accordion-day-preview {
+        gap: 1.5rem;
+    }
+}
+
 .accordion-day-preview i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--primary-color);
 }
 
+@media (min-width: 640px) {
+    .accordion-day-preview i {
+        font-size: 2.5rem;
+    }
+}
+
 .accordion-condition {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-secondary-color);
-    min-width: 120px;
+    min-width: 100px;
+}
+
+@media (min-width: 640px) {
+    .accordion-condition {
+        font-size: 1rem;
+        min-width: 120px;
+    }
 }
 
 .accordion-temp {
@@ -1427,10 +1484,17 @@ form button:hover {
 }
 
 .accordion-details {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0 1rem 1rem 1rem;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .accordion-details {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        gap: 2rem;
+    }
 }
 
 @media (min-width: 768px) {
