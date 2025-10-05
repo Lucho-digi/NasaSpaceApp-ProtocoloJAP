@@ -65,15 +65,3 @@ def fetch_power_data(lat, lon, start_date, end_date, parameters, community="AG",
     
     df = pd.DataFrame(df_dict)
     return df
-
-
-if __name__ == "__main__":
-    # Ejemplo de uso para Montevideo, usando fecha disponible
-    LAT = -34.9011
-    LON = -56.1645
-    START_DATE = "20231005"  # Fecha pasada reciente para que existan datos
-    END_DATE = "20231005"
-    PARAMETERS = ["T2M", "RH2M", "PS", "ALLSKY_SFC_SW_DWN", "WS10M"]
-
-    df = fetch_power_data(LAT, LON, START_DATE, END_DATE, PARAMETERS)
-    print(df)

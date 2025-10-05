@@ -1,53 +1,51 @@
-from datetime import datetime
-from api.services.indices import test_simulation_3days
+from datetime import datetime, timedelta
 from api.services.nasa_power import fetch_power_data
+import numpy as np
 
-
-def get_forecast(latitude: float, longitude: float, date: str):
+def test_simulation_3days(n):
     """
-    Función principal que devuelve el forecast para una ubicación y fecha.
-    Combina datos de NASA POWER y simulaciones de índices climáticos.
+    Simulación temporal: genera un conjunto de valores aleatorios
+    para simular un pronóstico a 3 días.
     """
-    # Parsear fecha
-    target_date = datetime.strptime(date, "%Y-%m-%d")
-
-    # Obtener datos de NASA POWER
-    power_vars = [
-        "T2M",  # temperature_2m
-        "PRECTOT",  # precipitation
-        "RH2M",  # relative humidity
-        "ALLSKY_SFC_SW_DWN",  # solar radiation
-        "WS10M",  # wind speed 10m
-    ]
-    power_data = fetch_power_data(latitude, longitude, date, date, power_vars)
-
-    # Simulación probabilística de precipitación y clima usando Monte Carlo
-    indices_results = test_simulation_3days(N=1000)
-
-    # Ejemplo de forecast summary (puedes mejorarlo luego)
-    forecast_summary = "Alta probabilidad de lluvia ligera y nubosidad densa."
-
-    # Construir JSON final
-    result = {
-        "location": {
-            "latitude": latitude,
-            "longitude": longitude,
-            "place_name": "Ubicación simulada",
-            "grid_resolution_deg": 0.5,
-        },
-        "date": date,
-        "data_sources": {
-            "power_api": power_data,
-            "ges_disc_opendap": {
-                "description": "Datos de OPENDAP aún no integrados",
-                "variables": ["precipitation_rate", "cloud_top_temperature"],
-            },
-        },
-        "forecast_summary": forecast_summary,
-        "model_output": {
-            "rain_forecast_index": indices_results.get("B", (0, 0))[0],  # ejemplo
-            "confidence_score": 0.9,
-            "model_version": "montecarlo-v1",
-        },
+    np.random.seed(42)
+    simulated = {
+        "prob_rain": round(float(np.random.uniform(0, 1)), 2),
+        "avg_temp": round(float(np.random.normal(20, 5)), 2),
+        "avg_humidity": round(float(np.random.uniform(50, 90)), 2),
+        "message": "Simulación de 3 días completada."
     }
-    return result
+    return simulated
+
+def get_forecast(lat: float, lon: float, target_date):
+    """
+    Lógica principal: obtiene datos de NASA POWER y simula pronóstico.
+    """
+    start_date = (target_date - timedelta(days=1)).strftime("%Y%m%d")
+    end_date = target_date.strftime("%Y%m%d")
+
+    parameters = ["T2M", "RH2M", "PS", "ALLSKY_SFC_SW_DWN", "WS10M"]
+
+    try:
+        df = fetch_power_data(lat, lon, start_date, end_date, parameters)
+    except Exception as e:
+        return {"error": str(e)}
+
+    # Calcular promedios básicos
+    avg_temp = df["T2M"].mean()
+    avg_humidity = df["RH2M"].mean()
+    avg_wind = df["WS10M"].mean()
+    solar = df["ALLSKY_SFC_SW_DWN"].mean()
+
+    # Simular probabilidad de lluvia (ejemplo simple)
+    prob_rain = max(0, min(1, (avg_humidity / 100) * (1 - solar / 5)))
+
+    return {
+        "date": str(target_date),
+        "location": f"{lat},{lon}",
+        "probability_rain": round(prob_rain * 100, 1),
+        "avg_temp": round(avg_temp, 2),
+        "avg_humidity": round(avg_humidity, 2),
+        "avg_wind": round(avg_wind, 2),
+        "solar": round(solar, 2),
+        "source": "NASA POWER",
+    }

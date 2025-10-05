@@ -1,11 +1,19 @@
 from pydantic import BaseModel
-from typing import Any, Dict
 
+class ForecastRequest(BaseModel):
+    latitude: float
+    longitude: float
+    date: str  # YYYY-MM-DD
+
+class Location(BaseModel):
+    latitude: float
+    longitude: float
 
 class ForecastResponse(BaseModel):
+    location: Location
     date: str
-    location: str
-    will_rain: bool
-    probability: float
-    source: str
-    details: Dict[str, Any]
+    temperature: float
+    precipitation: float
+    humidity: float
+    wind_speed: float
+    solar_radiation: float

@@ -1,18 +1,16 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.orm import declarative_base
-from api.utils.config import settings
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
 
+
+DATABASE_URL = "postgresql://fernando:postgres@localhost:5432/raincheck_db"
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-engine = create_async_engine(settings.database_url, echo=False, future=True)
-
-AsyncSessionLocal = async_sessionmaker(
-    engine,
-    expire_on_commit=False,
-    autoflush=False,
-    class_=AsyncSession,
-)
-
-async def get_db():
-    async with AsyncSessionLocal() as session:
-        yield session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

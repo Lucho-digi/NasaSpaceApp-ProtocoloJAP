@@ -1,13 +1,13 @@
-from sqlalchemy import Column, Integer, String, Float, Date, Boolean, JSON
-from api.db.base import Base
+from sqlalchemy import Column, Integer, Float, Date, JSON
+from sqlalchemy.ext.declarative import declarative_base
 
-class ForecastRecord(Base):
-    __tablename__ = "forecasts"
+Base = declarative_base()
+
+class ForecastCache(Base):
+    __tablename__ = "forecast_cache"
 
     id = Column(Integer, primary_key=True, index=True)
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
     date = Column(Date, nullable=False)
-    location = Column(String, nullable=False)
-    probability = Column(Float)
-    will_rain = Column(Boolean)
-    source = Column(String)
-    details = Column(JSON)
+    result = Column(JSON, nullable=False)
