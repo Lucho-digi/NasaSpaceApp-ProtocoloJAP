@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Creating accordion for', weekData.length, 'days');
         weekAccordion.innerHTML = '';
 
-        weekData.slice(0, 6).forEach((dayData, index) => {
+        weekData.slice(0, 7).forEach((dayData, index) => {
             console.log(`Creating item ${index + 1}:`, dayData.date);
             const accordionItem = createAccordionItem(dayData, location);
             weekAccordion.appendChild(accordionItem);

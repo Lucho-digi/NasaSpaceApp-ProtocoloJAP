@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         weekPreview.innerHTML = '';
         
-        weekData.slice(0, 6).forEach((dayData) => {
+        weekData.slice(0, 7).forEach((dayData) => {
             const temp = dayData.atmospheric_conditions.temperature;
             const precip = dayData.atmospheric_conditions.precipitation;
             const clouds = dayData.atmospheric_conditions.clouds;
