@@ -90,18 +90,18 @@ def spi_from_series(precip_series, window=3):
 
 
 def spei_from_series(precip_series, et_series, window=3):
-    diff = (
+    p_sum = (
         pd.Series(precip_series)
         .rolling(window=window, min_periods=window)
         .sum()
         .dropna()
-        .values
-        - pd.Series(et_series)
-        .rolling(window=window, min_periods=window)
-        .sum()
-        .dropna()
-        .values
     )
+    et_sum = (
+        pd.Series(et_series).rolling(window=window, min_periods=window).sum().dropna()
+    )
+
+    diff = np.asarray(p_sum) - np.asarray(et_sum)
+
     if stats is not None:
         c, loc, scale = stats.fisk.fit(diff, floc=0)
         cdf = stats.fisk.cdf(diff, c, loc=0, scale=scale)
