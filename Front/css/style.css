@@ -1655,3 +1655,11 @@ form button:hover {
     padding-bottom: 0.5rem;
     border-bottom: 2px solid rgba(var(--primary-color-rgb, 7, 32, 64), 0.3);
 }
+
+#footer-link{
+    color: inherit;
+}
+
+#footer-link:hover{
+    color: var(--primary-color);
+}
