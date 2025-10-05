@@ -51,18 +51,18 @@
         <section id="overview">
             <div class="overview-grid">
                 <!-- Today's Weather Preview -->
-                <a href="pages/today.html" class="overview-card-link">
+                <a href="pages/today.html" class="overview-card-link" id="today-preview-link">
                     <div class="card">
                         <div class="overview-header">
                             <h2>Today's Weather</h2>
-                            <p>Monday</p>
+                            <p id="today-day">Loading...</p>
                         </div>
                         <div class="overview-content">
                             <div class="overview-body">
-                                <i class="wi wi-day-sunny overview-icon" aria-hidden="true"></i>
-                                <p class="overview-temp">25°C</p>
+                                <i class="wi wi-day-sunny overview-icon" aria-hidden="true" id="today-icon"></i>
+                                <p class="overview-temp" id="today-temp">--°C</p>
                             </div>
-                            <p class="overview-minmax">Max: 28°C / Min: 18°C</p>
+                            <p class="overview-minmax" id="today-minmax">Max: --°C / Min: --°C</p>
                         </div>
                     </div>
                 </a>
@@ -72,37 +72,8 @@
                         <div class="overview-header">
                             <h2>Weekly Forecast</h2>
                         </div>
-                        <div class="week-preview">
-                            <div class="week-preview-day">
-                                <h3>Tue</h3>
-                                <i class="wi wi-day-cloudy" aria-hidden="true"></i>
-                                <p>24°C</p>
-                            </div>
-                            <div class="week-preview-day">
-                                <h3>Wed</h3>
-                                <i class="wi wi-day-rain" aria-hidden="true"></i>
-                                <p>22°C</p>
-                            </div>
-                            <div class="week-preview-day">
-                                <h3>Thu</h3>
-                                <i class="wi wi-day-showers" aria-hidden="true"></i>
-                                <p>23°C</p>
-                            </div>
-                            <div class="week-preview-day">
-                                <h3>Fri</h3>
-                                <i class="wi wi-day-sunny-overcast" aria-hidden="true"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="week-preview-day">
-                                <h3>Sat</h3>
-                                <i class="wi wi-cloudy" aria-hidden="true"></i>
-                                <p>27°C</p>
-                            </div>
-                            <div class="week-preview-day">
-                                <h3>Sun</h3>
-                                <i class="wi wi-day-sunny" aria-hidden="true"></i>
-                                <p>28°C</p>
-                            </div>
+                        <div class="week-preview" id="week-preview">
+                            <!-- Week preview will be populated dynamically -->
                         </div>
                     </div>
                 </a>
