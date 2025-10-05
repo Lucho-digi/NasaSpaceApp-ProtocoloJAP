@@ -1,7 +1,12 @@
 const API_BASE_URL = typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'http://localhost:8000/api';
+const USE_MOCK_DATA = typeof API_CONFIG !== 'undefined' ? API_CONFIG.USE_MOCK_DATA : true;
 
 const WeatherAPI = {
     async fetchWeatherData(latitude, longitude, date = null, startTime = null, endTime = null) {
+        if (USE_MOCK_DATA) {
+            return await this.getMockWeatherData(latitude, longitude, date);
+        }
+        
         try {
             let url = `${API_BASE_URL}/weather?latitude=${latitude}&longitude=${longitude}`;
             
@@ -15,11 +20,16 @@ const WeatherAPI = {
             return await response.json();
         } catch (error) {
             console.error('Error fetching weather data:', error);
-            return null;
+            console.warn('Falling back to mock data...');
+            return await this.getMockWeatherData(latitude, longitude, date);
         }
     },
 
     async fetchWeeklyForecast(latitude, longitude) {
+        if (USE_MOCK_DATA) {
+            return await this.getMockWeeklyData(latitude, longitude);
+        }
+        
         try {
             const url = `${API_BASE_URL}/forecast/weekly?latitude=${latitude}&longitude=${longitude}`;
             const response = await fetch(url);
@@ -28,6 +38,46 @@ const WeatherAPI = {
             return await response.json();
         } catch (error) {
             console.error('Error fetching weekly forecast:', error);
+            console.warn('Falling back to mock data...');
+            return await this.getMockWeeklyData(latitude, longitude);
+        }
+    },
+
+    async getMockWeatherData(latitude, longitude, date = null) {
+        try {
+            const isInPagesFolder = window.location.pathname.includes('/pages/');
+            const basePath = isInPagesFolder ? '../' : './';
+            const response = await fetch(`${basePath}example-api-response.json`);
+            const mockData = await response.json();
+            
+            mockData.location.latitude = latitude;
+            mockData.location.longitude = longitude;
+            if (date) {
+                mockData.date = date;
+            }
+            
+            return mockData;
+        } catch (error) {
+            console.error('Error loading mock data:', error);
+            return null;
+        }
+    },
+
+    async getMockWeeklyData(latitude, longitude) {
+        try {
+            const isInPagesFolder = window.location.pathname.includes('/pages/');
+            const basePath = isInPagesFolder ? '../' : './';
+            const response = await fetch(`${basePath}example-weekly-response.json`);
+            const mockData = await response.json();
+            
+            mockData.forEach(day => {
+                day.location.latitude = latitude;
+                day.location.longitude = longitude;
+            });
+            
+            return mockData;
+        } catch (error) {
+            console.error('Error loading mock weekly data:', error);
             return null;
         }
     }
