@@ -46,22 +46,61 @@
 
     <main class="container">
         <section id="today">
-            <h1>Today's Weather</h1>
+            <h1 id="page-title">Today's Weather</h1>
             <div class="card today-card">
                 <div class="today-card-left">
-                    <h2>Buenos Aires, Argentina</h2>
+                    <h2 id="location-name">Loading...</h2>
+                    <p id="date-display" class="date-subtitle"></p>
+                    
                     <div class="today-main-info">
-                        <p class="today-temp">25°C</p>
+                        <p class="today-temp">--°C</p>
                         <div class="today-weather-status">
                             <i class="wi wi-day-sunny" aria-hidden="true"></i>
-                            <p class="today-condition">Sunny</p>
+                            <p class="today-condition">--</p>
                         </div>
                     </div>
-                    <div class="today-details">
-                        <div class="detail-item"><span>Feels like</span> <strong>26°C</strong></div>
-                        <div class="detail-item"><span>Humidity</span> <strong>60%</strong></div>
-                        <div class="detail-item"><span>Wind</span> <strong>15 km/h</strong></div>
-                        <div class="detail-item"><span>Max / Min</span> <strong>28°C / 18°C</strong></div>
+                    
+                    <p id="forecast-summary" class="forecast-summary">--</p>
+                    
+                    <div class="today-details-grid">
+                        <div class="detail-section">
+                            <h3>Temperature</h3>
+                            <div class="detail-item"><span>Current</span> <strong id="temp-current">--°C</strong></div>
+                            <div class="detail-item"><span>Feels like</span> <strong id="temp-feels">--°C</strong></div>
+                            <div class="detail-item"><span>Max / Min</span> <strong id="temp-range">--°C / --°C</strong></div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3>Precipitation</h3>
+                            <div class="detail-item"><span>Probability</span> <strong id="precip-prob">--%</strong></div>
+                            <div class="detail-item"><span>Intensity</span> <strong id="precip-intensity">-- mm/h</strong></div>
+                            <div class="detail-item"><span>Type</span> <strong id="precip-type">--</strong></div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3>Wind & Air</h3>
+                            <div class="detail-item"><span>Wind Speed</span> <strong id="wind-speed">-- km/h</strong></div>
+                            <div class="detail-item"><span>Wind Gusts</span> <strong id="wind-gusts">-- km/h</strong></div>
+                            <div class="detail-item"><span>Direction</span> <strong id="wind-direction">--</strong></div>
+                            <div class="detail-item"><span>Humidity</span> <strong id="humidity">--%</strong></div>
+                            <div class="detail-item"><span>Pressure</span> <strong id="pressure">-- hPa</strong></div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3>Clouds & Sun</h3>
+                            <div class="detail-item"><span>Cloud Coverage</span> <strong id="cloud-coverage">--%</strong></div>
+                            <div class="detail-item"><span>Cloud Type</span> <strong id="cloud-type">--</strong></div>
+                            <div class="detail-item"><span>Solar Radiation</span> <strong id="solar-irradiance">-- W/m²</strong></div>
+                            <div class="detail-item"><span>Sunrise</span> <strong id="sunrise">--:--</strong></div>
+                            <div class="detail-item"><span>Sunset</span> <strong id="sunset">--:--</strong></div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3>Additional Info</h3>
+                            <div class="detail-item"><span>Lightning Risk</span> <strong id="lightning-risk">--</strong></div>
+                            <div class="detail-item"><span>Air Quality (AOD)</span> <strong id="air-quality">--</strong></div>
+                            <div class="detail-item"><span>Confidence</span> <strong id="confidence">--%</strong></div>
+                        </div>
                     </div>
                 </div>
             </div>

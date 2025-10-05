@@ -12,7 +12,8 @@
       "precipitation": {
         "probability": 0.15,
         "type": "none",
-        "intensity_mm_hr": 0.0
+        "intensity_mm_hr": 0.0,
+        "cloud_top_temp_k": 280.5
       },
       "temperature": {
         "surface_celsius": 22.5,
@@ -21,16 +22,42 @@
         "max_celsius": 26.0
       },
       "humidity": {
-        "relative_percent": 65
+        "relative_percent": 65,
+        "specific_humidity_kg_kg": 0.010
       },
       "wind": {
         "speed_m_s": 4.2,
-        "direction_deg": 120
+        "direction_deg": 120,
+        "gusts_m_s": 6.8
+      },
+      "solar": {
+        "irradiance_w_m2": 680,
+        "clearsky_index": 0.85,
+        "sunrise": "2025-10-06T09:30:00Z",
+        "sunset": "2025-10-06T22:45:00Z"
       },
       "clouds": {
         "coverage_percent": 25,
+        "optical_depth": 5.2,
         "type": "cumulus"
+      },
+      "pressure": {
+        "surface_hpa": 1015.2,
+        "trend": "steady"
+      },
+      "lightning": {
+        "activity_index": 0.05,
+        "risk_level": "low"
+      },
+      "air_quality": {
+        "aerosol_optical_depth": 0.12,
+        "ozone_du": 285.0
       }
+    },
+    "model_output": {
+      "rain_forecast_index": 0.20,
+      "confidence_score": 0.88,
+      "model_version": "nasa-weather-blend-v1"
     }
   },
   {
@@ -46,7 +73,8 @@
       "precipitation": {
         "probability": 0.25,
         "type": "none",
-        "intensity_mm_hr": 0.0
+        "intensity_mm_hr": 0.0,
+        "cloud_top_temp_k": 275.0
       },
       "temperature": {
         "surface_celsius": 21.0,
@@ -55,16 +83,42 @@
         "max_celsius": 24.0
       },
       "humidity": {
-        "relative_percent": 70
+        "relative_percent": 70,
+        "specific_humidity_kg_kg": 0.011
       },
       "wind": {
         "speed_m_s": 5.8,
-        "direction_deg": 135
+        "direction_deg": 135,
+        "gusts_m_s": 8.5
+      },
+      "solar": {
+        "irradiance_w_m2": 520,
+        "clearsky_index": 0.65,
+        "sunrise": "2025-10-07T09:31:00Z",
+        "sunset": "2025-10-07T22:44:00Z"
       },
       "clouds": {
         "coverage_percent": 55,
+        "optical_depth": 12.5,
         "type": "stratocumulus"
+      },
+      "pressure": {
+        "surface_hpa": 1013.5,
+        "trend": "falling"
+      },
+      "lightning": {
+        "activity_index": 0.08,
+        "risk_level": "low"
+      },
+      "air_quality": {
+        "aerosol_optical_depth": 0.14,
+        "ozone_du": 288.5
       }
+    },
+    "model_output": {
+      "rain_forecast_index": 0.35,
+      "confidence_score": 0.85,
+      "model_version": "nasa-weather-blend-v1"
     }
   },
   {
@@ -80,7 +134,8 @@
       "precipitation": {
         "probability": 0.75,
         "type": "rain",
-        "intensity_mm_hr": 2.1
+        "intensity_mm_hr": 2.1,
+        "cloud_top_temp_k": 255.0
       },
       "temperature": {
         "surface_celsius": 19.8,
@@ -89,16 +144,42 @@
         "max_celsius": 22.0
       },
       "humidity": {
-        "relative_percent": 85
+        "relative_percent": 85,
+        "specific_humidity_kg_kg": 0.013
       },
       "wind": {
         "speed_m_s": 7.2,
-        "direction_deg": 145
+        "direction_deg": 145,
+        "gusts_m_s": 11.0
+      },
+      "solar": {
+        "irradiance_w_m2": 280,
+        "clearsky_index": 0.35,
+        "sunrise": "2025-10-08T09:32:00Z",
+        "sunset": "2025-10-08T22:43:00Z"
       },
       "clouds": {
         "coverage_percent": 90,
+        "optical_depth": 20.0,
         "type": "nimbostratus"
+      },
+      "pressure": {
+        "surface_hpa": 1010.0,
+        "trend": "falling"
+      },
+      "lightning": {
+        "activity_index": 0.22,
+        "risk_level": "moderate"
+      },
+      "air_quality": {
+        "aerosol_optical_depth": 0.16,
+        "ozone_du": 292.0
       }
+    },
+    "model_output": {
+      "rain_forecast_index": 0.80,
+      "confidence_score": 0.92,
+      "model_version": "nasa-weather-blend-v1"
     }
   },
   {
@@ -114,7 +195,8 @@
       "precipitation": {
         "probability": 0.55,
         "type": "showers",
-        "intensity_mm_hr": 1.0
+        "intensity_mm_hr": 1.0,
+        "cloud_top_temp_k": 260.0
       },
       "temperature": {
         "surface_celsius": 20.5,
@@ -123,16 +205,42 @@
         "max_celsius": 23.0
       },
       "humidity": {
-        "relative_percent": 75
+        "relative_percent": 75,
+        "specific_humidity_kg_kg": 0.012
       },
       "wind": {
         "speed_m_s": 6.0,
-        "direction_deg": 140
+        "direction_deg": 140,
+        "gusts_m_s": 9.5
+      },
+      "solar": {
+        "irradiance_w_m2": 420,
+        "clearsky_index": 0.52,
+        "sunrise": "2025-10-09T09:33:00Z",
+        "sunset": "2025-10-09T22:42:00Z"
       },
       "clouds": {
         "coverage_percent": 70,
+        "optical_depth": 15.0,
         "type": "cumulonimbus"
+      },
+      "pressure": {
+        "surface_hpa": 1012.5,
+        "trend": "rising"
+      },
+      "lightning": {
+        "activity_index": 0.18,
+        "risk_level": "low"
+      },
+      "air_quality": {
+        "aerosol_optical_depth": 0.13,
+        "ozone_du": 286.0
       }
+    },
+    "model_output": {
+      "rain_forecast_index": 0.62,
+      "confidence_score": 0.87,
+      "model_version": "nasa-weather-blend-v1"
     }
   },
   {
@@ -148,7 +256,8 @@
       "precipitation": {
         "probability": 0.18,
         "type": "none",
-        "intensity_mm_hr": 0.0
+        "intensity_mm_hr": 0.0,
+        "cloud_top_temp_k": 282.0
       },
       "temperature": {
         "surface_celsius": 23.0,
@@ -157,16 +266,42 @@
         "max_celsius": 25.0
       },
       "humidity": {
-        "relative_percent": 60
+        "relative_percent": 60,
+        "specific_humidity_kg_kg": 0.009
       },
       "wind": {
         "speed_m_s": 3.5,
-        "direction_deg": 110
+        "direction_deg": 110,
+        "gusts_m_s": 5.5
+      },
+      "solar": {
+        "irradiance_w_m2": 720,
+        "clearsky_index": 0.90,
+        "sunrise": "2025-10-10T09:34:00Z",
+        "sunset": "2025-10-10T22:41:00Z"
       },
       "clouds": {
         "coverage_percent": 30,
+        "optical_depth": 6.0,
         "type": "cumulus"
+      },
+      "pressure": {
+        "surface_hpa": 1016.0,
+        "trend": "rising"
+      },
+      "lightning": {
+        "activity_index": 0.03,
+        "risk_level": "low"
+      },
+      "air_quality": {
+        "aerosol_optical_depth": 0.11,
+        "ozone_du": 283.0
       }
+    },
+    "model_output": {
+      "rain_forecast_index": 0.25,
+      "confidence_score": 0.90,
+      "model_version": "nasa-weather-blend-v1"
     }
   },
   {
@@ -182,7 +317,8 @@
       "precipitation": {
         "probability": 0.35,
         "type": "light rain",
-        "intensity_mm_hr": 0.3
+        "intensity_mm_hr": 0.3,
+        "cloud_top_temp_k": 270.0
       },
       "temperature": {
         "surface_celsius": 22.0,
@@ -191,16 +327,42 @@
         "max_celsius": 27.0
       },
       "humidity": {
-        "relative_percent": 72
+        "relative_percent": 72,
+        "specific_humidity_kg_kg": 0.011
       },
       "wind": {
         "speed_m_s": 4.8,
-        "direction_deg": 125
+        "direction_deg": 125,
+        "gusts_m_s": 7.2
+      },
+      "solar": {
+        "irradiance_w_m2": 450,
+        "clearsky_index": 0.56,
+        "sunrise": "2025-10-11T09:35:00Z",
+        "sunset": "2025-10-11T22:40:00Z"
       },
       "clouds": {
         "coverage_percent": 75,
+        "optical_depth": 16.5,
         "type": "stratus"
+      },
+      "pressure": {
+        "surface_hpa": 1014.0,
+        "trend": "steady"
+      },
+      "lightning": {
+        "activity_index": 0.10,
+        "risk_level": "low"
+      },
+      "air_quality": {
+        "aerosol_optical_depth": 0.13,
+        "ozone_du": 287.5
       }
+    },
+    "model_output": {
+      "rain_forecast_index": 0.45,
+      "confidence_score": 0.86,
+      "model_version": "nasa-weather-blend-v1"
     }
   }
 ]

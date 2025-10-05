@@ -444,11 +444,7 @@ p {
 }
 
 .leaflet-tile-pane {
-    filter: grayscale(1) invert(1) brightness(0.9) contrast(1.1);
-}
-
-[data-theme='light'] .leaflet-tile-pane {
-    filter: none;
+    filter: none !important;
 }
 
 .form-container {
@@ -1102,4 +1098,89 @@ form button:hover {
     background-color: rgba(231, 76, 60, 0.1);
     border-color: rgba(231, 76, 60, 0.3);
     color: #f19a90;
+}
+
+.date-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+    margin: -0.5rem 0 1rem 0;
+}
+
+.forecast-summary {
+    font-size: 1.1rem;
+    margin: 1rem 0 2rem 0;
+    padding: 1rem;
+    background-color: rgba(var(--primary-color-rgb, 7, 32, 64), 0.1);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.today-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .today-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .today-details-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.detail-section {
+    background-color: rgba(var(--card-background-rgb, 29, 32, 38), 0.5);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.detail-section h3 {
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.detail-section .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(var(--border-color-rgb, 58, 63, 74), 0.3);
+}
+
+.detail-section .detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-section .detail-item span {
+    color: var(--text-secondary-color);
+    font-size: 0.95rem;
+}
+
+.detail-section .detail-item strong {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.day-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.day-card-link:hover {
+    transform: translateY(-4px);
+}
+
+.day-card-link:hover .day-card {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
