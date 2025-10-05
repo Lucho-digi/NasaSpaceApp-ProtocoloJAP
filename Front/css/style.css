@@ -24,6 +24,11 @@
     --border-color-rgb: 224, 224, 224;
 }
 
+html {
+    overflow-y: auto; 
+    scrollbar-gutter: stable;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--background-color);
@@ -47,6 +52,7 @@ header {
     top: 0;
     z-index: 1000;
     transition: background-color 0.3s, border-bottom-color 0.3s;
+    overflow: hidden; /* Evita que el SVG de fondo cree scrollbars */
 }
 
 /* Desktop header padding */
@@ -241,6 +247,8 @@ nav a.active, nav a:hover {
 
 main {
     padding: 2rem 0;
+    position: relative; /* Crea un contexto de apilamiento */
+    z-index: 1;         /* Asegura que el contenido esté por encima del fondo */
 }
 
 section {
@@ -518,7 +526,7 @@ form button {
 form button:hover {
     background-color: #0b315f; /* A bit lighter than Oxford Blue */
     transform: translateY(-2px);
-    color: var(--text-color)
+    color: white;
 }
 
 .hidden {
@@ -595,23 +603,21 @@ form button:hover {
 .week-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 3.5rem;
+    gap: 3rem;
     justify-items: center;
+    
 }
 
 @media (min-width: 640px) {
     .week-cards {
         grid-template-columns: repeat(2, 1fr);
         gap: 3rem;
-        max-width: 800px;
-        margin: 0 auto;
     }
 }
 
 @media (min-width: 768px) {
     .week-cards {
         gap: 3.5rem;
-        max-width: 900px;
     }
 }
 
@@ -619,7 +625,6 @@ form button:hover {
     .week-cards {
         grid-template-columns: repeat(3, 1fr);
         gap: 4rem;
-        max-width: 1300px;
     }
 }
 
@@ -662,14 +667,12 @@ form button:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    width: 100%;
-    max-width: 250px;
+    gap: 0.5rem;
+    width: 15rem;
 }
 
 @media (min-width: 640px) {
     .day-card {
-        max-width: 100%;
         gap: 0.85rem;
         padding: 1.5rem 1.25rem;
     }
@@ -699,7 +702,8 @@ form button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 @media (min-width: 640px) {
@@ -717,7 +721,7 @@ form button:hover {
 .day-card h3 {
     margin: 0;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-color);
 }
 
@@ -734,7 +738,7 @@ form button:hover {
 }
 
 .day-card i {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--primary-color);
 }
 
@@ -751,7 +755,7 @@ form button:hover {
 }
 
 .day-condition {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-secondary-color);
     margin: 0;
     font-weight: 400;
@@ -773,7 +777,7 @@ form button:hover {
 }
 
 .temp-max {
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--text-color);
 }
@@ -785,7 +789,7 @@ form button:hover {
 }
 
 .temp-min {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
     color: var(--text-secondary-color);
 }
@@ -948,11 +952,54 @@ form button:hover {
     margin-bottom: 0.25rem;
 }
 
+
+.about-bg {
+    position: fixed; /* Fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 60rem;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    z-index: -1; /* Detrás de todo el contenido */
+    /* opacity: 1; Un poco más visible */
+    pointer-events: none; /* Evita que intercepte clics */
+    overflow: hidden; /* Oculta partes del SVG que se desbordan */
+}
+
+#about h1 {
+    background-color: var(--background-color);
+    width: 22rem;
+    border-radius: 10px;
+}
+
+.about-bg svg {
+    position: absolute;
+    /* Hacemos el SVG el doble de grande que la pantalla */
+    width: 160%;
+    height: 150%;
+    /* Lo centramos para que el "zoom" sea hacia el medio */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-bg svg ellipse {
+    stroke: var(--primary-color); /* Usa el color primario del tema */
+    stroke-width: 0.8; /* Líneas más finas */
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
 .about-card {
+    /* Remove max-width to match other pages and improve layout */
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1.5rem;
+    gap: 3rem; /* Add vertical space between sections */
+    padding: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .about-card {
+        padding: 3.5rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1126,6 +1173,7 @@ form button:hover {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     margin-top: 2rem;
+    margin-bottom: 2rem;
     width: 100%;
 }
 
@@ -1154,35 +1202,31 @@ form button:hover {
 }
 
 .detail-section {
-    background: linear-gradient(135deg, rgba(var(--card-background-rgb, 29, 32, 38), 0.8), rgba(var(--card-background-rgb, 29, 32, 38), 0.6));
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(var(--primary-color-rgb, 119, 131, 226), 0.2);
-    height: 100%;
-    min-height: 200px;
+    background-color: var(--card-background);
+    padding: 1rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    position: relative;
 }
 
 .detail-section:hover {
-    border-color: rgba(var(--primary-color-rgb, 119, 131, 226), 0.4);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
 }
 
 .detail-section h3 {
     font-size: 1rem;
     margin: 0 0 1rem 0;
-    color: var(--primary-color);
-    font-weight: 600;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(var(--primary-color-rgb, 119, 131, 226), 0.3);
+    color: var(--text-color);
+    font-weight: 500;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     flex-shrink: 0;
 }
 
@@ -1190,18 +1234,13 @@ form button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.65rem 0;
-    border-bottom: 1px solid rgba(var(--border-color-rgb, 58, 63, 74), 0.2);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
     transition: background-color 0.2s ease;
 }
 
 .detail-section .detail-item:hover {
-    background-color: rgba(var(--primary-color-rgb, 119, 131, 226), 0.05);
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    margin-left: -0.5rem;
-    margin-right: -0.5rem;
-    border-radius: 6px;
+    background-color: rgba(var(--primary-color-rgb), 0.05);
 }
 
 .detail-section .detail-item:last-child {
@@ -1238,4 +1277,34 @@ form button:hover {
 .day-card-link:hover .day-card {
     border-color: var(--primary-color);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styles */
+footer {
+    padding: 2.5rem 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+footer .container {
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary-color);
+}
+
+footer a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
