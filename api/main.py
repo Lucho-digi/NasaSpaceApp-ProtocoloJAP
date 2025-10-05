@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.routes import forecast, health
+from routes import forecast, health
 
 app = FastAPI(
     title="RainCheck API",

@@ -1,0 +1,13 @@
+[project]
+name = "raincheck-api"
+version = "0.1.0"
+description = "API that predicts temperature, humidity, wind, precipitation, and rain probability using historical NASA POWER data."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.118.0",
+    "pandas>=2.3.3",
+    "pydantic>=2.11.9",
+    "requests>=2.32.5",
+    "uvicorn>=0.37.0"
+]
