@@ -1239,3 +1239,62 @@ form button:hover {
     border-color: var(--primary-color);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
+
+/* Text-based details layout (no cards) */
+.today-details-text {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .today-details-text {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .today-details-text {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem 3rem;
+    }
+}
+
+.details-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.details-column h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(var(--primary-color-rgb, 7, 32, 64), 0.3);
+}
+
+.details-column p {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0;
+    padding: 0.4rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.details-column p span {
+    color: var(--text-secondary-color);
+    flex: 1;
+}
+
+.details-column p strong {
+    color: var(--text-color);
+    font-weight: 600;
+    text-align: right;
+    margin-left: 1rem;
+}
