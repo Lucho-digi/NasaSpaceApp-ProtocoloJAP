@@ -592,41 +592,239 @@ form button:hover {
 
 .week-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 3.5rem;
+    justify-items: center;
+}
+
+@media (min-width: 640px) {
+    .week-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .week-cards {
+        gap: 3.5rem;
+        max-width: 900px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .week-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+        max-width: 1300px;
+    }
+}
+
+.week-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary-color);
+    margin: -0.5rem 0 2rem 0;
+    font-weight: 400;
+}
+
+#week {
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    #week {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #week {
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #week {
+        padding: 0;
+    }
 }
 
 .day-card {
     background-color: var(--card-background);
     border-radius: 16px;
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
     border: 1px solid var(--border-color);
     transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, border-color 0.3s;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 250px;
+}
+
+@media (min-width: 640px) {
+    .day-card {
+        max-width: 100%;
+        gap: 0.85rem;
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .day-card {
+        padding: 1.75rem 1.5rem;
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .day-card {
+        padding: 2rem 1.75rem;
+        gap: 1.1rem;
+    }
 }
 
 .day-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border-color: var(--primary-color);
+}
+
+.day-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+    .day-card-header {
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .day-card-header {
+        margin-bottom: 1rem;
+    }
 }
 
 .day-card h3 {
-    margin: 0 0 1rem 0;
+    margin: 0;
     font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+@media (min-width: 768px) {
+    .day-card h3 {
+        font-size: 1.15rem;
+    }
+}
+
+.day-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary-color);
+    font-weight: 400;
 }
 
 .day-card i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
 }
 
-.day-card p {
-    font-size: 1.5rem;
-    font-weight: 600;
+@media (min-width: 640px) {
+    .day-card i {
+        font-size: 3.2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .day-card i {
+        font-size: 3.5rem;
+    }
+}
+
+.day-condition {
+    font-size: 0.9rem;
+    color: var(--text-secondary-color);
     margin: 0;
+    font-weight: 400;
+    min-height: 1.5rem;
+}
+
+.day-temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.25rem 0;
+}
+
+@media (min-width: 640px) {
+    .day-temp {
+        margin: 0.5rem 0;
+    }
+}
+
+.temp-max {
+    font-size: 1.6rem;
+    font-weight: 600;
     color: var(--text-color);
+}
+
+@media (min-width: 640px) {
+    .temp-max {
+        font-size: 1.8rem;
+    }
+}
+
+.temp-min {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-secondary-color);
+}
+
+@media (min-width: 640px) {
+    .temp-min {
+        font-size: 1.3rem;
+    }
+}
+
+.day-extra {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    color: var(--text-secondary-color);
+}
+
+@media (min-width: 640px) {
+    .day-extra {
+        padding-top: 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+
+.day-extra span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.day-extra i {
+    font-size: 0.95rem;
+}
+
+@media (min-width: 640px) {
+    .day-extra i {
+        font-size: 1rem;
+    }
 }
 
 .theme-toggler {

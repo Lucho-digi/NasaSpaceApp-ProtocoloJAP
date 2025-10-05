@@ -24,62 +24,126 @@
         <div class="container">
             <nav>
                 <a href="../index.html" class="logo">Raincheck</a>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="../index.html#specific">Home</a></li>
                     <li><a href="today.html">Today</a></li>
                     <li><a href="week.html" class="active">This Week</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
-                <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
-                    <div class="toggler"></div>
-                </button>
+                <div class="nav-actions">
+                    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="theme-toggler" id="theme-toggler" aria-label="Toggle theme">
+                        <div class="toggler"></div>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
 
     <main class="container">
         <section id="week">
-            <h1>Weather this Week</h1>
+            <h1>Week</h1>
+            <p class="week-subtitle">Buenos Aires, Argentina</p>
             <div class="week-cards">
                 <div class="day-card">
-                    <h3>Monday</h3>
+                    <div class="day-card-header">
+                        <h3>Monday</h3>
+                        <span class="day-date">Oct 6</span>
+                    </div>
                     <i class="wi wi-day-sunny" aria-hidden="true"></i>
-                    <p>26°C</p>
+                    <p class="day-condition">Sunny</p>
+                    <div class="day-temp">
+                        <span class="temp-max">26°</span>
+                        <span class="temp-min">18°</span>
+                    </div>
+                    <div class="day-extra">
+                        <span><i class="wi wi-raindrop"></i> 10%</span>
+                        <span><i class="wi wi-strong-wind"></i> 12 km/h</span>
+                    </div>
                 </div>
                 <div class="day-card">
-                    <h3>Tuesday</h3>
+                    <div class="day-card-header">
+                        <h3>Tuesday</h3>
+                        <span class="day-date">Oct 7</span>
+                    </div>
                     <i class="wi wi-day-cloudy" aria-hidden="true"></i>
-                    <p>24°C</p>
+                    <p class="day-condition">Partly Cloudy</p>
+                    <div class="day-temp">
+                        <span class="temp-max">24°</span>
+                        <span class="temp-min">17°</span>
+                    </div>
+                    <div class="day-extra">
+                        <span><i class="wi wi-raindrop"></i> 20%</span>
+                        <span><i class="wi wi-strong-wind"></i> 15 km/h</span>
+                    </div>
                 </div>
                 <div class="day-card">
-                    <h3>Wednesday</h3>
+                    <div class="day-card-header">
+                        <h3>Wednesday</h3>
+                        <span class="day-date">Oct 8</span>
+                    </div>
                     <i class="wi wi-day-rain" aria-hidden="true"></i>
-                    <p>22°C</p>
+                    <p class="day-condition">Rainy</p>
+                    <div class="day-temp">
+                        <span class="temp-max">22°</span>
+                        <span class="temp-min">16°</span>
+                    </div>
+                    <div class="day-extra">
+                        <span><i class="wi wi-raindrop"></i> 80%</span>
+                        <span><i class="wi wi-strong-wind"></i> 18 km/h</span>
+                    </div>
                 </div>
                 <div class="day-card">
-                    <h3>Thursday</h3>
+                    <div class="day-card-header">
+                        <h3>Thursday</h3>
+                        <span class="day-date">Oct 9</span>
+                    </div>
                     <i class="wi wi-day-showers" aria-hidden="true"></i>
-                    <p>23°C</p>
+                    <p class="day-condition">Showers</p>
+                    <div class="day-temp">
+                        <span class="temp-max">23°</span>
+                        <span class="temp-min">17°</span>
+                    </div>
+                    <div class="day-extra">
+                        <span><i class="wi wi-raindrop"></i> 60%</span>
+                        <span><i class="wi wi-strong-wind"></i> 14 km/h</span>
+                    </div>
                 </div>
                 <div class="day-card">
-                    <h3>Friday</h3>
+                    <div class="day-card-header">
+                        <h3>Friday</h3>
+                        <span class="day-date">Oct 10</span>
+                    </div>
                     <i class="wi wi-day-sunny-overcast" aria-hidden="true"></i>
-                    <p>25°C</p>
+                    <p class="day-condition">Mostly Sunny</p>
+                    <div class="day-temp">
+                        <span class="temp-max">25°</span>
+                        <span class="temp-min">18°</span>
+                    </div>
+                    <div class="day-extra">
+                        <span><i class="wi wi-raindrop"></i> 15%</span>
+                        <span><i class="wi wi-strong-wind"></i> 10 km/h</span>
+                    </div>
                 </div>
                 <div class="day-card">
-                    <h3>Saturday</h3>
+                    <div class="day-card-header">
+                        <h3>Saturday</h3>
+                        <span class="day-date">Oct 11</span>
+                    </div>
                     <i class="wi wi-cloudy" aria-hidden="true"></i>
-                    <p>27°C</p>
-                </div>
-                <div class="day-card">
-                    <h3>Sunday</h3>
-                    <i class="wi wi-day-sunny" aria-hidden="true"></i>
-                    <p>28°C</p>
+                    <p class="day-condition">Cloudy</p>
+                    <div class="day-temp">
+                        <span class="temp-max">27°</span>
+                        <span class="temp-min">19°</span>
+                    </div>
+                    <div class="day-extra">
+                        <span><i class="wi wi-raindrop"></i> 25%</span>
+                        <span><i class="wi wi-strong-wind"></i> 13 km/h</span>
+                    </div>
                 </div>
             </div>
         </section>
