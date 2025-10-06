@@ -82,19 +82,56 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    async function initializeUserLocation() {
+        // Usar el LocationFixer para asegurar ubicación válida
+        if (window.LocationFixer) {
+            await window.LocationFixer.ensureValidDeviceLocation();
+        } else {
+            // Fallback al método original si no está disponible
+            const storedLocation = localStorage.getItem('userLocation');
+            if (!storedLocation) {
+                try {
+                    console.log('Detectando ubicación del usuario...');
+                    const position = await WeatherUtils.getCurrentLocation();
+                    
+                    WeatherUtils.setStoredLocation({
+                        latitude: position.latitude,
+                        longitude: position.longitude,
+                        place_name: `${position.latitude.toFixed(4)}, ${position.longitude.toFixed(4)}`
+                    });
+                    
+                    console.log('Ubicación detectada:', position.latitude, position.longitude);
+                } catch (error) {
+                    console.warn('No se pudo detectar la ubicación del usuario:', error);
+                }
+            }
+        }
+    }
+
     async function loadOverviewData() {
         if (!document.getElementById('overview')) return;
 
+        // Asegurar que tenemos la ubicación del usuario
+        await initializeUserLocation();
+        
         const location = WeatherUtils.getStoredLocation();
-        const todayData = await WeatherAPI.fetchWeatherData(location.latitude, location.longitude);
-        const weekData = await WeatherAPI.fetchWeeklyForecast(location.latitude, location.longitude);
+        console.log('Cargando datos del clima para:', location.place_name);
+        
+        try {
+            const todayData = await WeatherAPI.fetchWeatherData(location.latitude, location.longitude);
+            const weekData = await WeatherAPI.fetchWeeklyForecast(location.latitude, location.longitude);
 
-        if (todayData) {
-            updateTodayOverview(todayData);
-        }
+            if (todayData) {
+                console.log('Datos del clima de hoy obtenidos:', todayData);
+                updateTodayOverview(todayData);
+            }
 
-        if (weekData && weekData.length > 0) {
-            updateWeekOverview(weekData);
+            if (weekData && weekData.length > 0) {
+                console.log('Datos del pronóstico semanal obtenidos:', weekData.length, 'días');
+                updateWeekOverview(weekData);
+            }
+        } catch (error) {
+            console.error('Error al cargar datos del clima:', error);
         }
     }
 
@@ -192,15 +229,28 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             const timeInput = `${String(hour24).padStart(2, '0')}:${minuteValue}`;
 
-            let latitude, longitude;
+            let latitude, longitude, placeName;
             if (locationInput && locationInput.includes(',')) {
                 const coords = locationInput.split(',').map(c => parseFloat(c.trim()));
                 latitude = coords[0];
                 longitude = coords[1];
+                
+                // Obtener el nombre del lugar usando geocodificación inversa
+                try {
+                    const response = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+                    );
+                    const geoData = await response.json();
+                    placeName = geoData.display_name || `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                } catch (geoError) {
+                    console.warn('No se pudo obtener el nombre del lugar:', geoError);
+                    placeName = `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                }
             } else {
                 const location = WeatherUtils.getStoredLocation();
                 latitude = location.latitude;
                 longitude = location.longitude;
+                placeName = location.place_name;
             }
 
             const startTime = timeInput ? `${dateValue}T${timeInput}:00Z` : null;
@@ -211,7 +261,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 longitude,
                 dateValue || null,
                 startTime,
-                endTime
+                endTime,
+                placeName
             );
 
             if (data) {
