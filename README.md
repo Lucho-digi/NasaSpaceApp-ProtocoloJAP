@@ -71,6 +71,7 @@ Whether planning a parade, outdoor wedding, sporting event, or any outdoor activ
    - Weather recommendations for their planned activity
 
 
+
 ## 🌐 NASA Data Integration
 
 ### POWER API
