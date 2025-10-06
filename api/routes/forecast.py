@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException
+import os
+from fastapi import APIRouter, Depends, HTTPException, Header
 from datetime import datetime
 from models.forecast import ForecastRequest, ForecastResponse, Location
 from services.nasa_power import fetch_power_data
@@ -11,6 +12,13 @@ from services.indices import (
 )
 
 router = APIRouter()
+
+API_KEY = os.getenv("API_KEY", "mi_api_key_secreta")
+
+def verify_api_key(x_api_key: str = Header(...)):
+    if x_api_key != API_KEY:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
 
 @router.post("/", response_model=ForecastResponse)
 def forecast(request: ForecastRequest):
