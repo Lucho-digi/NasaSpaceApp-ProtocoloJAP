@@ -1,15 +1,33 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    async function initializeUserLocation() {
+        try {
+            const position = await WeatherUtils.getCurrentLocation();
+            const placeName = await WeatherAPI.getPlaceNameFromCoords(position.latitude, position.longitude);
+            
+            WeatherUtils.setStoredLocation({
+                latitude: position.latitude,
+                longitude: position.longitude,
+                place_name: placeName,
+                timestamp: Date.now()
+            });
+        } catch (error) {
+            WeatherUtils.setStoredLocation({
+                latitude: -34.75,
+                longitude: -56.04,
+                place_name: 'Canelones, Uruguay',
+                timestamp: Date.now()
+            });
+        }
+    }
+
     async function loadWeeklyForecast() {
-        const location = WeatherUtils.getStoredLocation();
-        console.log('Loading weekly forecast for:', location);
+        await initializeUserLocation();
         
+        const location = WeatherUtils.getStoredLocation();
         const weekData = await WeatherAPI.fetchWeeklyForecast(location.latitude, location.longitude);
 
-        console.log('Week data received:', weekData);
-
         if (!weekData || weekData.length === 0) {
-            console.error('Failed to load weekly forecast data');
-            document.getElementById('week-accordion').innerHTML = '<p style="color: red; padding: 2rem;">Error loading data. Check console.</p>';
+            document.getElementById('week-accordion').innerHTML = '<p style="color: red; padding: 2rem;">Error loading data.</p>';
             return;
         }
 
@@ -19,16 +37,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     function updateWeekPage(weekData, location) {
         const subtitle = document.getElementById('week-location');
         if (subtitle) {
-            subtitle.textContent = location.place_name;
+            const displayName = (weekData && weekData[0] && weekData[0].location) 
+                ? weekData[0].location.place_name 
+                : location.place_name;
+            subtitle.textContent = displayName;
+            
+            if (weekData && weekData[0] && weekData[0].location && weekData[0].location.place_name !== location.place_name) {
+                location.place_name = weekData[0].location.place_name;
+                WeatherUtils.setStoredLocation(location);
+            }
         }
 
         const weekAccordion = document.getElementById('week-accordion');
-        if (!weekAccordion) {
-            console.error('week-accordion element not found!');
-            return;
-        }
+        if (!weekAccordion) return;
 
-        console.log('Creating accordion for', weekData.length, 'days');
         weekAccordion.innerHTML = '';
 
         weekData.slice(0, 7).forEach((dayData, index) => {
