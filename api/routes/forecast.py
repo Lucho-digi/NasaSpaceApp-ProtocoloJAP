@@ -20,7 +20,7 @@ def verify_api_key(x_api_key: str = Header(...)):
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 
-@router.post("/", response_model=ForecastResponse)
+@router.post("/", response_model=ForecastResponse, dependencies=[Depends(verify_api_key)])
 def forecast(request: ForecastRequest):
     try:
         target_date = datetime.strptime(request.date, "%Y-%m-%d")
