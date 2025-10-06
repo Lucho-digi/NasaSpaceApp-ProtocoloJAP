@@ -38,13 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             marker = L.marker(e.latlng).addTo(map);
             locationInput.value = `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
 
-            const placeName = await reverseGeocode(lat, lng);
-            
-            WeatherUtils.setStoredLocation({
-                latitude: lat,
-                longitude: lng,
-                place_name: placeName
-            });
+            console.log('Ubicación seleccionada en mapa (solo para formulario):', lat, lng);
         }
 
         map.on('click', onMapClick);
