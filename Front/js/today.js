@@ -1,141 +1,113 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Update navigation active state
-    updateNavigationState();
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const dateParam = urlParams.get('date');
-    const latParam = urlParams.get('lat');
-    const lonParam = urlParams.get('lon');
-
-    async function loadDayWeather() {
-        let location = WeatherUtils.getStoredLocation();
-        
-        if (latParam && lonParam) {
-            location = {
-                latitude: parseFloat(latParam),
-                longitude: parseFloat(lonParam),
-                place_name: location.place_name
-            };
+    async function initializeUserLocation() {
+        try {
+            const position = await WeatherUtils.getCurrentLocation();
+            const placeName = await WeatherAPI.getPlaceNameFromCoords(position.latitude, position.longitude);
+            
+            WeatherUtils.setStoredLocation({
+                latitude: position.latitude,
+                longitude: position.longitude,
+                place_name: placeName,
+                timestamp: Date.now()
+            });
+        } catch (error) {
+            WeatherUtils.setStoredLocation({
+                latitude: -34.75,
+                longitude: -56.04,
+                place_name: 'Canelones, Uruguay',
+                timestamp: Date.now()
+            });
         }
+    }
 
-        const data = await WeatherAPI.fetchWeatherData(
-            location.latitude, 
-            location.longitude, 
-            dateParam
-        );
+    async function loadTodayWeather() {
+        await initializeUserLocation();
+        
+        const location = WeatherUtils.getStoredLocation();
+        const weatherData = await WeatherAPI.fetchWeatherData(location.latitude, location.longitude);
 
-        if (!data) {
-            console.error('Failed to load weather data');
-            document.getElementById('location-name').textContent = 'Error loading data';
+        if (!weatherData) {
+            document.getElementById('location-name').textContent = 'Error cargando datos';
             return;
         }
 
-        updateTodayPage(data, dateParam);
+        updateTodayPage(weatherData, location);
     }
 
-    function updateTodayPage(data, dateOverride) {
-        const todayCard = document.querySelector('.today-card');
-        if (!todayCard) return;
+    function updateTodayPage(weatherData, location) {
+        const temp = weatherData.atmospheric_conditions.temperature;
+        const precip = weatherData.atmospheric_conditions.precipitation;
+        const clouds = weatherData.atmospheric_conditions.clouds;
+        const wind = weatherData.atmospheric_conditions.wind;
+        const humidity = weatherData.atmospheric_conditions.humidity;
+        const solar = weatherData.atmospheric_conditions.solar;
+        const pressure = weatherData.atmospheric_conditions.pressure;
 
-        const location = data.location;
-        const temp = data.atmospheric_conditions.temperature;
-        const precip = data.atmospheric_conditions.precipitation;
-        const clouds = data.atmospheric_conditions.clouds;
-        const humidity = data.atmospheric_conditions.humidity;
-        const wind = data.atmospheric_conditions.wind;
-        const solar = data.atmospheric_conditions.solar;
-        const pressure = data.atmospheric_conditions.pressure;
-        const lightning = data.atmospheric_conditions.lightning;
-        const airQuality = data.atmospheric_conditions.air_quality;
-        const modelOutput = data.model_output;
-
-        const isToday = !dateOverride || dateOverride === new Date().toISOString().split('T')[0];
-        
-        document.getElementById('page-title').textContent = isToday ? "Today's Weather" : "Weather Details";
-        document.getElementById('location-name').textContent = location.place_name;
-        
-        const dateDisplay = document.getElementById('date-display');
-        if (dateOverride) {
-            const date = new Date(dateOverride);
-            dateDisplay.textContent = date.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-        } else {
-            dateDisplay.textContent = new Date().toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
+        const locationElement = document.getElementById('location-name');
+        if (locationElement) {
+            const displayName = weatherData.location.place_name || location.place_name;
+            locationElement.textContent = displayName;
+            
+            if (weatherData.location.place_name && weatherData.location.place_name !== location.place_name) {
+                location.place_name = weatherData.location.place_name;
+                WeatherUtils.setStoredLocation(location);
+            }
         }
 
-        const icon = WeatherUtils.getWeatherIcon(
-            WeatherUtils.getConditionText(precip.probability, clouds.coverage_percent),
-            precip.probability,
-            clouds.coverage_percent,
-            'day'
-        );
+        const tempElement = document.querySelector('.today-temp');
+        if (tempElement) {
+            tempElement.textContent = WeatherUtils.formatTemperature(temp.surface_celsius) + '°C';
+        }
+
         const condition = WeatherUtils.getConditionText(precip.probability, clouds.coverage_percent);
+        const conditionElement = document.querySelector('.today-condition');
+        if (conditionElement) {
+            conditionElement.textContent = condition;
+        }
 
-        todayCard.querySelector('.today-temp').textContent = 
-            `${WeatherUtils.formatTemperature(temp.surface_celsius)}°C`;
-        todayCard.querySelector('.today-weather-status i').className = `wi ${icon}`;
-        todayCard.querySelector('.today-condition').textContent = condition;
+        const icon = WeatherUtils.getWeatherIcon(condition, precip.probability, clouds.coverage_percent, 'day');
+        const iconElement = document.querySelector('.today-weather-status i');
+        if (iconElement) {
+            iconElement.className = 'wi ' + icon;
+        }
+        updateElement('temp-current', WeatherUtils.formatTemperature(temp.surface_celsius) + '°C');
+        updateElement('temp-feels', WeatherUtils.formatTemperature(temp.dew_point_celsius) + '°C');
+        updateElement('temp-range', WeatherUtils.formatTemperature(temp.max_celsius) + '°C / ' + WeatherUtils.formatTemperature(temp.min_celsius) + '°C');
+        updateElement('humidity', Math.round(humidity.relative_percent) + '%');
+        updateElement('wind-speed', WeatherUtils.formatWindSpeed(wind.speed_m_s) + ' km/h');
+        updateElement('pressure', pressure.surface_hpa.toFixed(1) + ' hPa');
+        updateElement('precip-prob', Math.round(precip.probability * 100) + '%');
+        updateElement('cloud-coverage', Math.round(clouds.coverage_percent) + '%');
+        
+        if (solar.sunrise) {
+            updateElement('sunrise', formatTime(solar.sunrise));
+        }
+        if (solar.sunset) {
+            updateElement('sunset', formatTime(solar.sunset));
+        }
 
-        document.getElementById('forecast-summary').textContent = data.forecast_summary || '--';
+        if (weatherData.forecast_summary) {
+            updateElement('forecast-summary', weatherData.forecast_summary);
+        }
 
-        document.getElementById('temp-current').textContent = 
-            `${WeatherUtils.formatTemperature(temp.surface_celsius)}°C`;
-        document.getElementById('temp-feels').textContent = 
-            `${WeatherUtils.formatTemperature(temp.dew_point_celsius)}°C`;
-        document.getElementById('temp-range').textContent = 
-            `${WeatherUtils.formatTemperature(temp.max_celsius)}°C / ${WeatherUtils.formatTemperature(temp.min_celsius)}°C`;
-
-        document.getElementById('precip-prob').textContent = 
-            `${Math.round(precip.probability * 100)}%`;
-        document.getElementById('precip-intensity').textContent = 
-            `${precip.intensity_mm_hr.toFixed(1)} mm/h`;
-        document.getElementById('precip-type').textContent = 
-            precip.type || 'none';
-
-        document.getElementById('wind-speed').textContent = 
-            `${WeatherUtils.formatWindSpeed(wind.speed_m_s)} km/h`;
-        document.getElementById('wind-gusts').textContent = 
-            `${WeatherUtils.formatWindSpeed(wind.gusts_m_s)} km/h`;
-        document.getElementById('wind-direction').textContent = 
-            `${wind.direction_deg}° ${getWindDirection(wind.direction_deg)}`;
-        document.getElementById('humidity').textContent = 
-            `${Math.round(humidity.relative_percent)}%`;
-        document.getElementById('pressure').textContent = 
-            `${pressure.surface_hpa.toFixed(1)} hPa ${pressure.trend ? '(' + pressure.trend + ')' : ''}`;
-
-        document.getElementById('cloud-coverage').textContent = 
-            `${Math.round(clouds.coverage_percent)}%`;
-        document.getElementById('cloud-type').textContent = 
-            clouds.type || '--';
-        document.getElementById('solar-irradiance').textContent = 
-            `${Math.round(solar.irradiance_w_m2)} W/m²`;
-        document.getElementById('sunrise').textContent = 
-            formatTime(solar.sunrise);
-        document.getElementById('sunset').textContent = 
-            formatTime(solar.sunset);
-
-        document.getElementById('lightning-risk').textContent = 
-            lightning.risk_level || '--';
-        document.getElementById('air-quality').textContent = 
-            airQuality.aerosol_optical_depth.toFixed(3);
-        document.getElementById('confidence').textContent = 
-            `${Math.round(modelOutput.confidence_score * 100)}%`;
+        const currentDate = new Date();
+        const dateStr = currentDate.toLocaleDateString('es-ES', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        updateElement('date-display', dateStr);
     }
 
-    function getWindDirection(degrees) {
-        const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-        const index = Math.round(degrees / 22.5) % 16;
-        return directions[index];
+    function updateElement(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = value;
+        }
     }
+
+
 
     function formatTime(isoString) {
         if (!isoString) return '--:--';
@@ -143,25 +115,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     }
 
-    function updateNavigationState() {
-        // Remove active class from all nav links
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => link.classList.remove('active'));
-        
-        // Check if we came from week.html (has date parameter)
-        const urlParams = new URLSearchParams(window.location.search);
-        const hasDateParam = urlParams.has('date');
-        
-        if (hasDateParam) {
-            // If has date param, we came from week, so mark week as active
-            const weekLink = document.querySelector('.nav-menu a[href="week.html"]');
-            if (weekLink) weekLink.classList.add('active');
-        } else {
-            // Otherwise, mark today as active
-            const todayLink = document.querySelector('.nav-menu a[href="today.html"]');
-            if (todayLink) todayLink.classList.add('active');
-        }
-    }
-
-    await loadDayWeather();
+    await loadTodayWeather();
 });
